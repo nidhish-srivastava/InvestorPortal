@@ -33,7 +33,7 @@ function Login() {
         </div>
       </div>
 
-<form onSubmit={loginHandler}>
+<form onSubmit={loginHandler} className="flex flex-col gap-2">
         <input
           value={email}
           required

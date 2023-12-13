@@ -3,8 +3,8 @@ import Image from "next/image";
 import signupPage from "../../assets/signupPage.png";
 import { useEffect, useState } from "react";
 import ShowPassSvg from "@/components/ShowPassSvg";
-import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import Link from "next/link";
 import { db } from "@/utils/firebase";
 import {
@@ -30,7 +30,7 @@ import AccountSuccessModal from "@/components/AccountSuccessModal";
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-    const [value, setValue] = useState(60)
+    const [value, setValue] = useState(0)
     // const [users, setUsers] = useState([])
     const [email, setEmail] = useState("")
     const [number, setNumber] = useState("")
@@ -93,7 +93,7 @@ function SignUp() {
         <>
             {value == 0 ?
                 <main className="flex flex-col items-center">
-                    <div className="flex items-center">
+                    <div className="flex items-center w-4/5">
                         <div>
                             <h2>Create an Account</h2>
                             <h4>Invest and grow your savings</h4>
@@ -104,14 +104,14 @@ function SignUp() {
                     </div>
                     <form>
                         {/* <form onSubmit={submitHandler}> */}
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-2">
                             <input autoFocus={true} required type="text" name="fullName" placeholder="Full name" value={fullName} onChange={e=>setFullName(e.target.value)} />
                             <input required type="email" name="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)} />
                             <PhoneInput 
                             defaultCountry="IN" value={number} onChange={setNumber} placeholder="Enter Phone Number" />
                             <div className="relative">
                                 <input
-                                className="border-none"
+                                className="border-none outline-none"
                                     name="password"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Password"
@@ -129,7 +129,7 @@ function SignUp() {
                             </div>
                             <div className="relative">
                                 <input
-                                className="border-none"
+                                className="border-none outline-none"
                                     type={showConfirmPassword ? "text" : "password"}
                                     value={confirmPassword}
                                     onChange={e => setConfirmPassword(e.target.value)}
@@ -142,8 +142,8 @@ function SignUp() {
                                     <ShowPassSvg />
                                 </span>
                             </div>
-                        </div>
                         <button type="button" onClick={() => sendOTP()}>Create account</button>
+                        </div>
                     </form>
                     <Link href={`/login`}>
                         <span>Already have an account?</span>

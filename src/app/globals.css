@@ -8,10 +8,10 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-input,select{
+/* input,select{
   border-width: 1px;
   padding: 1rem;
-}
+} */
 /* 
 @media (prefers-color-scheme: dark) {
   :root {
