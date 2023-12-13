@@ -16,11 +16,10 @@ function Login() {
     const loginHandler = async(e)=>{
         e.preventDefault()
     try {
-        // const response = await signInWithEmailAndPassword(auth,"abc@gmail.com","asdasdasda")
         const response = await signInWithEmailAndPassword(auth,email,password)
-        // const response = await createUserWithEmailAndPassword(auth,"abc@gmail.com","asdasdasda")
-        if(response.user.email.length > 1)
-        router.push("/")
+        if(response.user.email.length > 1){
+          router.push("/")
+        }
     } catch (error) {
         
     }
@@ -28,7 +27,6 @@ function Login() {
   return (
     <main className="flex flex-col items-center">
       <div className="flex items-center">
-        <button onClick={loginHandler}>Check</button>
         <h1>Login</h1>
         <div>
           <Image src={loginPageHero} width={100} height={100} alt="hero" />

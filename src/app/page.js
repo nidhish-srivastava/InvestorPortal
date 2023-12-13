@@ -20,7 +20,6 @@ export default function Page() {
    {authUser?.length > 1 ? <Home/> : <>
    <Link href={`/login`}>Log In</Link>
    <Link href={`/signup`}>Create account</Link>
-
    </>}
    </>
   )

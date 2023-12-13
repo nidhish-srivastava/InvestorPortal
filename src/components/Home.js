@@ -10,7 +10,8 @@ function Home() {
   return (
     <div>
         Home
-        <button onClick={signoutHandler}>SIgn out</button>
+        <br />
+        <button onClick={signoutHandler}>Sign out</button>
     </div>
   )
 }

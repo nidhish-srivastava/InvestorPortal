@@ -7,6 +7,11 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
+
+input,select{
+  border-width: 1px;
+  padding: 1rem;
+}
 /* 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -25,3 +30,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
+
+
+#recaptcha-container {
+  margin: 20px;
+}
