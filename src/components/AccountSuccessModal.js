@@ -4,18 +4,17 @@ import AccountCreated from '../assets/AccountSuccess.png'
 function AccountSuccessModal() {
     const router = useRouter()
 return (
-    <div className="bg-white flex max-w-[360px] flex-col items-stretch pl-10 pr-16 py-12">
+    <div className="flex flex-col items-center mt-12">
       <Image
       src={AccountCreated}
-      width={100}
-      height={100}
+      width={400}
+      height={400}
       alt=""
-        className="aspect-[0.98] object-contain object-center w-full overflow-hidden mt-20"
         />
-      <div className="text-black text-2xl self-center whitespace-nowrap mt-10 mb-56">
+      <h3 className="text-black text-2xl self-center whitespace-nowrap mt-10 mb-4">
         Account created successfully
-      </div>
-      <button onClick={()=>router.push("/")}>Home</button>
+      </h3>
+      <button className="btn" onClick={()=>router.push("/")}>Home</button>
     </div>
   );
 }

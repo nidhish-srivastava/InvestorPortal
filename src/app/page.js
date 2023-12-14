@@ -18,9 +18,17 @@ export default function Page() {
   return (
    <>
    {authUser?.length > 1 ? <Home/> : <>
-   <div className='flex flex-col justify-center items-center'>
-   <Link href={`/login`}>Log In</Link>
-   <Link href={`/signup`}>Create account</Link>
+   <div className='flex flex-col justify-center h-screen items-center gap-4'>
+   <Link href={`/login`}>
+    <button className='btn'>
+    Log In
+    </button>
+    </Link>
+   <Link href={`/signup`}>
+    <button className='btn'>
+    Create account
+    </button>
+    </Link>
    </div>
    </>}
    </>

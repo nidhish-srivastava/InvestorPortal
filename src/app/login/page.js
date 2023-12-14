@@ -9,31 +9,30 @@ import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
 
 function Login() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const router = useRouter()
-    const loginHandler = async(e)=>{
-        e.preventDefault()
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter()
+  const loginHandler = async (e) => {
+    e.preventDefault()
     try {
-        const response = await signInWithEmailAndPassword(auth,email,password)
-        if(response.user.email.length > 1){
-          router.push("/")
-        }
+      const response = await signInWithEmailAndPassword(auth, email, password)
+      if (response.user.email.length > 1) {
+        router.push("/")
+      }
     } catch (error) {
-        
+
     }
   }
   return (
-    <main className="flex flex-col items-center">
-      <div className="flex items-center">
-        <h1>Login</h1>
+    <main className="flex flex-col items-center h-screen pb-12">
+      <div className="flex items-center gap-8">
+        <h1 className="text-indigo-700 text-center text-[25px] not-italic font-bold">Login</h1>
         <div>
-          <Image src={loginPageHero} width={100} height={100} alt="hero" />
+          <Image src={loginPageHero} width={185} height={185} alt="hero" />
         </div>
       </div>
-
-<form onSubmit={loginHandler} className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 mt-12 w-[90%]">
         <input
           value={email}
           required
@@ -41,8 +40,9 @@ function Login() {
           type="email"
           placeholder="Email address"
         />
-        <div className="relative">
+        <div className="relative border overflow-hidden rounded-xl">
           <input
+          className="border-none outline-none"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
@@ -50,17 +50,20 @@ function Login() {
             required
           />
           <span
-            className="absolute right-0"
+            className="absolute top-4 right-0"
             onClick={() => setShowPassword((prev) => !prev)}
           >
-     <ShowPassSvg/>
+            <ShowPassSvg />
           </span>
         </div>
-        <button>Log In</button>
-      </form>
-        <Link href={`/signup`}>
-          <span>I don't have an account</span>
-        </Link>
+      </div>
+      <div className="text-center mt-auto">
+        <button onClick={loginHandler} className="btn">Log In</button>
+        <br />
+      <Link href={`/signup`}>
+        <span className="text-indigo-700 text-center text-sm not-italic font-normal"> I don't have an account</span>
+      </Link>
+      </div>
     </main>
   );
 }

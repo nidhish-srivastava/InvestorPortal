@@ -1,8 +1,6 @@
 export const OccupationDetails = [
-  "Private Sector Service",
   "Self Employed",
   "Government Service",
-  "Public Sector Service",
   "Business",
   "House Wife",
   "Professional",
@@ -11,6 +9,8 @@ export const OccupationDetails = [
   "Agriculturist",
   "Retired",
   "Service",
+  "Private Sector Service",
+  "Public Sector Service",
 ];
 
 export const IncomeBrackets = [

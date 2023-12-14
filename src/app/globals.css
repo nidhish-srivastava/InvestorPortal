@@ -8,9 +8,43 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-/* input,select{
+.btn{
+  border-radius: 14px;
+background: #1B3ADB;
+width: 332px;
+height: 61px;
+flex-shrink: 0;
+color: #FFF;
+text-align: center;
+font-size: 17px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+h1,h2,h3,h4,h5{
+  margin: 0;
+  padding: 0;
+}
+
+input,select{
   border-width: 1px;
   padding: 1rem;
+  outline: none;
+  border-radius: 0.75rem;
+}
+
+
+.remove-arrow::-webkit-inner-spin-button,
+.remove-arrow::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.remove-arrow {
+    -moz-appearance: textfield;
+}
+
+/* input,select{
 } */
 /* 
 @media (prefers-color-scheme: dark) {
