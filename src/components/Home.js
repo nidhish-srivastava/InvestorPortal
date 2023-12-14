@@ -9,8 +9,7 @@ function Home() {
     }
   return (
     <div>
-        Home
-        <br />
+        
         <button onClick={signoutHandler}>Sign out</button>
     </div>
   )

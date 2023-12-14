@@ -1,8 +1,16 @@
 import { OccupationDetails } from "@/utils";
 import PrevIcon from "./PrevIcon";
+import { useState } from "react";
 
 export default function Occupation(props) {
   const { setValue,setOccupation } = props
+  const [highlightedBtn,setHighlightedBtn] = useState(null)
+
+  const clickHandler = (e)=>{
+    setHighlightedBtn(e)
+    setOccupation(e)
+  }
+
   return (
     <>
       <div className="bg-white flex flex-col pt-4 pb-12 px-3.5">
@@ -15,19 +23,9 @@ export default function Occupation(props) {
         <label className="text-blue-700 text-base font-semibold whitespace-nowrap ml-3.5 mt-7 self-start">
           Select one of the options
         </label>
-        {/* <div className=" flex flex-wrap justify-between gap-2 mt-14 items-start">
-        {OccupationDetails.map(e=>(
-        <button
-        onClick={()=>setOccupation(e)} 
-        className="cursor-pointer w-fit border rounded"
-        >
-            {e}
-        </button>
-        ))}
-      </div> */}
         <div className="self-stretch flex flex-wrap justify-between gap-3 mt-14 items-start">
           {OccupationDetails.map(e => (
-            <button onClick={() => setOccupation(e)} className="text-black text-sm font-medium whitespace-nowrap border grow justify-center items-stretch  py-5 rounded-xl border-solid border-slate-900 border-opacity-70">
+            <button onClick={() => clickHandler(e)} key={e} className={`text-black text-sm font-medium whitespace-nowrap border grow justify-center items-stretch  py-5 rounded-xl border-solid border-slate-900 border-opacity-70 ${highlightedBtn==e ? "text-blue-700": ""}`}>
               {e}
             </button>
           ))}

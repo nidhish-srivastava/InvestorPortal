@@ -30,15 +30,15 @@ export default function BankDetails(props) {
       <div className="flex flex-col gap-2 mt-4">
       <input required type="text" placeholder="Full Name" name="fullName" value={bankDetails.fullName} onChange={changeHandler} />
       <input required type="text" placeholder="Branch Name" name="branchName" value={bankDetails.branchName} onChange={changeHandler} />
-      <select className="border" required name="" id="">
+      <select className="border" required name="bankName" id="">
       <option value="" selected>Select Bank</option>
         {BankNames.map(e=>(
             <option value="">{e}</option>
         ))}
       </select>
-      <input required type="text" placeholder="IFSC code" />
-      <input required type="text" placeholder="Account Number" />
-      <input required type="text" placeholder="Address" />
+      <input required type="text" name="ifscCode" placeholder="IFSC code" />
+      <input required type="text" name="accountNumber" placeholder="Account Number" />
+      <input required type="text" name="address" placeholder="Address" />
       </div>
       <button onClick={submitHandler} className="btn mx-auto mt-8"
       >

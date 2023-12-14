@@ -120,7 +120,7 @@ function SignUp() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-2 w-[90%]">
+                    <div className="flex flex-col gap-2 mb-4 w-[90%]">
                         <input autoFocus={true} required type="text" name="fullName" placeholder="Full name" value={fullName} onChange={e => setFullName(e.target.value)} />
                         <input required type="email" name="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)} />
                         <PhoneInput
