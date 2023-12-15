@@ -1,6 +1,6 @@
-import panNumberImg from '../assets/PanNumber.png'
+import panNumberImg from '../../assets/PanNumber.png'
 import Image from "next/image";
-import PrevIcon from "./PrevIcon";
+import PrevIcon from "../Icons/PrevIcon";
 
 export default function PanNumber(props) {
     const {setValue,panNumber,setPanNumber} = props

@@ -6,18 +6,15 @@ function OTP(props) {
 
   const { number, result, setValue,sendOTP,show } = props
   const [otp, setOtp] = useState("");
-  console.log(result);
 
   const verifyOtp = async () => {
     try {
       const res = await result.confirm(otp)
-      console.log(res);
       if ( res.operationType === "signIn" &&
       res.providerId === "phone") {
         setValue(20)
       }
     } catch (error) {
-      console.log(error);
     }
   }
 

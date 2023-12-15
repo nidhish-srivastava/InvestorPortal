@@ -1,5 +1,5 @@
 import { IncomeBrackets } from "@/utils";
-import PrevIcon from "./PrevIcon";
+import PrevIcon from "../Icons/PrevIcon";
 import { useState } from "react";
 
 export default function Income(props) {

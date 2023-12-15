@@ -2,7 +2,7 @@
 import Image from "next/image";
 import signupPage from "../../assets/signupPage.png";
 import { useEffect, useState } from "react";
-import ShowPassSvg from "@/components/ShowPassSvg";
+import ShowPassSvg from "@/components/Icons/ShowPasswordSvg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import Link from "next/link";
@@ -16,22 +16,21 @@ import {
     doc,
 } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import OTP from "@/components/OTP";
+import OTP from "@/components/ProfileCreation/OTP";
 import { auth } from "@/utils/firebase";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import Aadhaar from "@/components/Aadhar";
-import PanNumber from "@/components/PanNumber";
-import Occupation from "@/components/Occupation";
-import Income from "@/components/Income";
-import BankDetails from "@/components/BankDetails";
-import AccountSuccessModal from "@/components/AccountSuccessModal";
+import Aadhaar from "@/components/ProfileCreation/Aadhar";
+import PanNumber from "@/components/ProfileCreation/PanNumber";
+import Occupation from "@/components/ProfileCreation/Occupation";
+import Income from "@/components/ProfileCreation/Income";
+import BankDetails from "@/components/ProfileCreation/BankDetails";
+import AccountSuccessModal from "@/components/ProfileCreation/AccountSuccessModal";
 
 
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [value, setValue] = useState(0)
-    // const [users, setUsers] = useState([])
     const [email, setEmail] = useState("")
     const [number, setNumber] = useState("")
     const [password, setPassword] = useState("")
@@ -56,8 +55,6 @@ function SignUp() {
 
 
     const usersCollectionRef = collection(db, "users");
-    // console.log(db);
-
 
 
     const submitHandler = async (e) => {

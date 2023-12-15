@@ -1,5 +1,5 @@
 import { OccupationDetails } from "@/utils";
-import PrevIcon from "./PrevIcon";
+import PrevIcon from "../Icons/PrevIcon";
 import { useState } from "react";
 
 export default function Occupation(props) {

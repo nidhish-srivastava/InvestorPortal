@@ -3,10 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 import loginPageHero from "../../assets/loginPage.png";
 import Image from "next/image";
-import ShowPassSvg from "@/components/ShowPassSvg";
+import ShowPassSvg from "@/components/Icons/ShowPasswordSvg";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
+import toast, { ToastBar, Toaster } from "react-hot-toast";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,10 +22,12 @@ function Login() {
         router.push("/")
       }
     } catch (error) {
-
+      toast.error("Login Failed !!!")
     }
   }
   return (
+    <>
+      <Toaster toastOptions={{duration : 3000}}/>
     <main className="flex flex-col items-center h-screen pb-12">
       <div className="flex items-center gap-8">
         <h1 className="text-indigo-700 text-center text-[25px] not-italic font-bold">Login</h1>
@@ -65,6 +68,7 @@ function Login() {
       </Link>
       </div>
     </main>
+    </>
   );
 }
 

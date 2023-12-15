@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import AccountCreated from '../assets/AccountSuccess.png'
+import AccountCreated from '../../assets/AccountSuccess.png'
 function AccountSuccessModal() {
     const router = useRouter()
 return (

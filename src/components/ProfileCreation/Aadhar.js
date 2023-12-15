@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Aadhar from '../assets/Aadhar.png'
-import PrevIcon from "./PrevIcon";
+import Aadhar from '../../assets/Aadhar.png'
+import PrevIcon from "../Icons/PrevIcon";
 
 export default function Aadhaar(props) {
   const {setValue,aadharInput,setAadharInput} = props

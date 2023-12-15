@@ -2,10 +2,8 @@ import { signOut } from "firebase/auth"
 import { auth } from "@/utils/firebase";
 import Image from "next/image";
 import Dp from '../assets/Dp.png'
-import HomeIconSvg from "./HomeIconSvg";
-import WalletIconSvg from "./WalletIconSvg";
-import ActivityIconSvg from "./ActivityIconSvg";
-import SampleProject from '../assets/SampleProject.png'
+import ProjectCard from "./ProjectCard";
+import BottomNavBar from "./Navbar/BottomNavBar";
 
 function Home() {
     const signoutHandler = async() =>{
@@ -25,29 +23,12 @@ function Home() {
           Hi Investor
           </h2>
         </header>
-        <div className="fixed bottom-0 p-5 w-[100%] flex justify-between items-center rounded-tl-lg rounded-tr-lg bg-blue-700 shadow-md">
-         <HomeIconSvg/>
-         <ActivityIconSvg/>
-         <WalletIconSvg/>
-        </div>
+      <BottomNavBar/>
         <div className="py-4">
         <button className="ml-4 rounded-md bg-blue-200 bg-opacity-19 text-blue-800 text-sm font-bold px-4 py-1">Upcoming Projects</button>
-        <div className="p-4 flex gap-2 mt-8 rounded-md bg-blue-100">
-          <Image
-          src={SampleProject}
-          width={100}
-          height={100}
-          alt=""
-          />
-          <div className="flex flex-col items-start gap-2">
-            <h2 className="text-violet-700 font-medium">Project Name</h2>
-            <h4 className="text-[10px] font-medium">Project leader name</h4>
-            <h4 className="text-[10px] font-medium">&#8377; 100,100 for 1 year</h4>
-            <button className="rounded-[4px] font-medium px-2 py-1 bg-indigo-600 text-[11px] text-white">View Details</button>
-          </div>
+       <ProjectCard/>
         </div>
-        </div>
-        {/* <button onClick={signoutHandler}>Sign out</button> */}
+        <button onClick={signoutHandler}>Sign out</button>
     </>
   )
 }
