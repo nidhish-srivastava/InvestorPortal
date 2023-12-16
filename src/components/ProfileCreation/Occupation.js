@@ -25,7 +25,7 @@ export default function Occupation(props) {
         </label>
         <div className="self-stretch flex flex-wrap justify-between gap-3 mt-14 items-start">
           {OccupationDetails.map(e => (
-            <button onClick={() => clickHandler(e)} key={e} className={`text-black text-sm font-medium whitespace-nowrap border grow justify-center items-stretch  py-5 rounded-xl border-solid border-slate-900 border-opacity-70 ${highlightedBtn==e ? "text-blue-700": ""}`}>
+            <button onClick={() => clickHandler(e)} key={e} className={`text-black text-sm font-medium whitespace-nowrap border grow justify-center items-stretch  py-5 rounded-xl border-solid border-slate-900 border-opacity-70 ${highlightedBtn==e ? "bg-blue-700 text-white": ""}`}>
               {e}
             </button>
           ))}

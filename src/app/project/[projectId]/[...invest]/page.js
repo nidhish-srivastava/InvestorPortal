@@ -1,7 +1,9 @@
 import NavHeader from "@/components/Navbar/NavHeader";
 import SampleProgram from '../../../../assets/SampleProject.png'
 import Image from "next/image";
+
 function InvestmentDetails({ params }) {
+  
   return (
     <>
       <NavHeader route={`project/${params.projectId}`}>InvestmentDetails</NavHeader>
