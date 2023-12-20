@@ -9,11 +9,7 @@ import Link from "next/link";
 import { db } from "@/utils/firebase";
 import {
     collection,
-    getDocs,
     addDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
 } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import OTP from "@/components/ProfileCreation/OTP";

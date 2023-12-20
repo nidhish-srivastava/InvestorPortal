@@ -6,8 +6,9 @@ import Image from "next/image"
 import NavHeader from "@/components/Navbar/NavHeader"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { doc, getDoc, getDocs } from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore"
 import { db } from "@/utils/firebase";
+import Button from "@/components/Button"
 
 function page() {
     const [obj,setObj] = useState({})
@@ -17,9 +18,11 @@ function page() {
     const fetchDetails = async() =>{
         try {
             const docSnapshot = await getDoc(projectDocRef)
+            console.log(docSnapshot);
             if(docSnapshot.exists()){
                 const docData = docSnapshot.data();
-                setObj(docData)
+                const id = docSnapshot.id
+                setObj({...docData,id})
             }
         } catch (error) {
             
@@ -42,7 +45,7 @@ function page() {
                 <div className="flex flex-col items-start gap-2">
                     <h2 className="text-[18px] text-violet-700 font-medium">{obj?.name}</h2>
                     <h4 className="text-[13px] font-medium">{obj?.leaderName}</h4>
-                    <h4 className="text-[13px] font-medium">&#8377; {obj?.cost} for {obj?.endingDate - obj?.startingDate}</h4>
+                    <h4 className="text-[13px] font-medium">&#8377; {obj?.cost} for 1 year</h4>
                 </div>
             </div>
             <main className="w-[95%] mx-auto">
@@ -55,9 +58,12 @@ function page() {
                     <h3 className="text-[18px] font-medium text-violet-700 mb-2">Why Invest here</h3>
                     <p>{obj?.investmentReason}</p>
                 </div>
-                <div className="text-center">
-                    <Link href={`${obj.id}/investment-details`}>
-                        <button className="btn">Invest Now</button>
+                <div className=" flex gap-4 justify-center mt-4 "> 
+                    <Link href={`${obj?.id}/technical-info`}>
+                    <Button>Technical Info</Button>
+                    </Link>
+                    <Link href={`${obj?.id}/financial-info`}>
+                    <Button>Financial Info</Button>
                     </Link>
                 </div>
             </main>

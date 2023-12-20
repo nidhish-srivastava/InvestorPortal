@@ -1,6 +1,6 @@
 
 
-import { BankNames } from "@/utils";
+import { BankNames } from "@/utils/constants";
 import PrevIcon from "../Icons/PrevIcon";
 
 export default function BankDetails(props) {

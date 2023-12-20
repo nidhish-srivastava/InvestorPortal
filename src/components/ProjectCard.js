@@ -20,7 +20,7 @@ function ProjectCard({ongoing,projectObj}) {
       <h4 className="text-[10px] font-medium">{projectObj?.leaderName}</h4>
       {(ongoing==true ? <button className="rounded-[4px] font-medium px-2 py-1 bg-indigo-600 text-[11px] text-white">Learn more</button> : (
         <>
-      <h4 className="text-[10px] font-medium">&#8377; {projectObj?.cost} for {projectObj.endingDate.seconds}</h4>
+      <h4 className="text-[10px] font-medium">&#8377; {projectObj?.cost} for 1 Year</h4>
       <Link href={`/project/${projectObj?.id}`}>
       <button className="rounded-[4px] font-medium px-2 py-1 bg-indigo-600 text-[11px] text-white">View Details</button>
       </Link>

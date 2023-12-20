@@ -1,4 +1,4 @@
-import { OccupationDetails } from "@/utils";
+import { OccupationDetails } from "@/utils/constants";
 import PrevIcon from "../Icons/PrevIcon";
 import { useState } from "react";
 

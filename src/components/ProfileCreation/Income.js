@@ -1,4 +1,4 @@
-import { IncomeBrackets } from "@/utils";
+import { IncomeBrackets } from "@/utils/constants";
 import PrevIcon from "../Icons/PrevIcon";
 import { useState } from "react";
 
