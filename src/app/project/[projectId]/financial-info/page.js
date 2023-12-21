@@ -10,6 +10,7 @@ import { db } from "@/utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { sumHandler } from "@/utils";
 import RupeeIcon from "@/components/Icons/RupeeIcon";
+import Link from "next/link";
 
 
 function InvestmentDetails({ params }) {
@@ -71,19 +72,6 @@ function InvestmentDetails({ params }) {
               <h3>We can get a max of <b>5</b> investors</h3>
               <h4>Remaining Limit of Investors : {maxInvestorsRequired}</h4>
             </div>
-            {/* <div className="mt-4 flex flex-col gap-2 text-[14px] font-semibold">
-          <p>I am {obj?.name} leader of this project
-            I have Invested 50% in this project.
-          </p>
-            <span className="text-green-600">
-              You can invest the remaining 50% in this project
-            </span>
-            <p>
-            If you invest 50% for one year then you will get
-            5% equity in this company and after completion
-            of this project you will get 10% of your investment money.
-          </p>
-        </div> */}
           </main>
           <div className="text-center my-4">
             <Button className={`rounded-md`} onClick={openModal} >Invest Now</Button>
@@ -99,61 +87,13 @@ function InvestmentDetails({ params }) {
 export default InvestmentDetails
 
 
-// const Disclaimer = () => {
-//   const [agreed, setAgreed] = useState(false);
-
-//   const handleAgreement = () => {
-//     if (agreed) {
-//       // Perform the action to proceed with the investment
-//       alert("Thank you for agreeing. Proceeding with the investment...");
-//     } else {
-//       alert("Please read and agree to the disclaimer before proceeding.");
-//     }
-//   };
-
-//   return (
-//     <div className="w-[90%] max-w-md mx-auto my-8 p-4 bg-white border border-gray-300 rounded-md shadow-md">
-//       <p className="mb-4">
-//         <strong>Disclaimer:</strong> Investing involves risks, and past performance does not guarantee future results.
-//         Please carefully consider your investment objectives, risk tolerance, and the potential benefits before deciding to invest.Always conduct your own research
-//         and consult with a qualified financial advisor before making investment decisions. <br /> <br /> By clicking 'I Agree and Continue,'
-//         you acknowledge that you have read and understood this disclaimer and are proceeding at your own risk.
-//       </p>
-
-//       <div className="flex items-center">
-//         <input
-//           type="checkbox"
-//           id="agreeCheckbox"
-//           className="mr-2"
-//           checked={agreed}
-//           onChange={() => setAgreed(!agreed)}
-//         />
-//         <label htmlFor="agreeCheckbox" className="text-gray-700">
-//           I Agree and Continue
-//         </label>
-//       </div>
-//       <div className="text-center mt-4">
-//       <Button
-//         className={`${agreed ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-//         onClick={handleAgreement}
-//         disabled={!agreed}
-//         >
-//         Invest Now
-//       </Button>
-//         </div>
-//     </div>
-//   );
-// };
-
-const Disclaimer = ({ showModal, closeModal }) => {
+const Disclaimer = ({ showModal, closeModal}) => {
   const [agreed, setAgreed] = useState(false);
-
 
   const handleAgreement = () => {
     if (agreed) {
       // Perform the action to proceed with the investment
       alert("Thank you for agreeing. Proceeding with the investment...");
-      closeModal();
     } else {
       alert("Please read and agree to the disclaimer before proceeding.");
     }
@@ -185,13 +125,15 @@ const Disclaimer = ({ showModal, closeModal }) => {
               </label>
             </div>
             <div className="text-center">
+              <Link href={`financial-info/investment-process`}>
               <Button
                 className={`p-2 mt-4 ${agreed ? 'cursor-pointer' : 'cursor-not-allowed'}`}
                 onClick={handleAgreement}
                 disabled={!agreed}
-              >
+                >
                 Invest Now
               </Button>
+                </Link>
             </div>
           </div>
         </div>
