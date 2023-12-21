@@ -1,3 +1,4 @@
+import RupeeIcon from "@/components/Icons/RupeeIcon"
 import NavHeader from "@/components/Navbar/NavHeader"
 import ProjectCard from "@/components/ProjectCard"
 
@@ -11,7 +12,7 @@ function MyInvestments() {
     <section className="mt-4 w-[95%] mx-auto p-2 rounded-lg bg-blue-600 shadow-md flex justify-between">
       <div className="flex flex-col text-white p-2">
         <span>Total Invested</span>
-        <span>&#8377; 300,000</span>
+        <span><RupeeIcon/> 300,000</span>
       </div>
       <span>
       <svg xmlns="http://www.w3.org/2000/svg" width="88" height="66" viewBox="0 0 88 66" fill="none">
