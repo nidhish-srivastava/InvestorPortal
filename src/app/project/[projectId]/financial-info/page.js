@@ -50,6 +50,12 @@ function InvestmentDetails({ params }) {
   let maxInvestorsRequired = 5 - currentInvestors
   let investmentRaised = sumHandler(obj?.investmentProgress)
 
+  let investmentRequired = obj?.cost - investmentRaised
+
+  useEffect(()=>{
+    sessionStorage.setItem("investmentRequired",JSON.stringify({investmentRequired,maxInvestorsRequired}))
+  },[obj])
+
   return (
     <>
       <NavHeader route={`project/${params.projectId}`}>InvestmentDetails</NavHeader>
@@ -66,7 +72,7 @@ function InvestmentDetails({ params }) {
             </h3>
             <div className="">
               <h3 className="mt-4 text-[14px] font-semibold text-blue-500 bg-opacity-70">Investment progress overview</h3>
-              <b>Investment Required : <RupeeIcon /> {obj?.cost - investmentRaised}</b>
+              <b>Investment Required : <RupeeIcon /> {investmentRequired}</b>
               <h2>Investment Raised <RupeeIcon /> {investmentRaised}</h2>
               <h2>Current Number of Investors  : {currentInvestors}</h2>
               <h3>We can get a max of <b>5</b> investors</h3>
@@ -74,7 +80,7 @@ function InvestmentDetails({ params }) {
             </div>
           </main>
           <div className="text-center my-4">
-            <Button className={`rounded-md`} onClick={openModal} >Invest Now</Button>
+            <Button className={`rounded-md`} onClick={openModal} >Continue</Button>
           </div>
         </>
       }
@@ -125,7 +131,7 @@ const Disclaimer = ({ showModal, closeModal}) => {
               </label>
             </div>
             <div className="text-center">
-              <Link href={`financial-info/investment-process`}>
+              <Link href={`financial-info/invest`}>
               <Button
                 className={`p-2 mt-4 ${agreed ? 'cursor-pointer' : 'cursor-not-allowed'}`}
                 onClick={handleAgreement}
