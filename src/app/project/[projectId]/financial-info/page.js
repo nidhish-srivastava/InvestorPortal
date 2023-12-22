@@ -52,9 +52,9 @@ function InvestmentDetails({ params }) {
 
   let investmentRequired = obj?.cost - investmentRaised
 
-  useEffect(()=>{
-    sessionStorage.setItem("investmentRequired",JSON.stringify({investmentRequired,maxInvestorsRequired}))
-  },[obj])
+  useEffect(() => {
+    sessionStorage.setItem("investmentRequired", JSON.stringify({ investmentRequired, maxInvestorsRequired }))
+  }, [obj])
 
   return (
     <>
@@ -63,22 +63,40 @@ function InvestmentDetails({ params }) {
         <Skeleton count={5} />
       </div> :
         <>
-          <main className="flex flex-col mx-auto mt-8 w-[90%]">
+          <section className="flex flex-col mx-auto mt-8 w-[90%]">
             <div className=" bg-yellow-200 w-[180px] mx-auto">
               <Image src={SampleProgram} alt="" width={500} height={500} />
             </div>
-            <h2 className="text-blue-500 text-[18px] font-medium">{obj?.name}</h2>
-            <h3><b>Project Cost - <RupeeIcon /> {obj?.cost}</b>
-            </h3>
-            <div className="">
-              <h3 className="mt-4 text-[14px] font-semibold text-blue-500 bg-opacity-70">Investment progress overview</h3>
-              <b>Investment Required : <RupeeIcon /> {investmentRequired}</b>
-              <h2>Investment Raised <RupeeIcon /> {investmentRaised}</h2>
-              <h2>Current Number of Investors  : {currentInvestors}</h2>
-              <h3>We can get a max of <b>5</b> investors</h3>
-              <h4>Remaining Limit of Investors : {maxInvestorsRequired}</h4>
+            <div className="mt-2 p-1">
+              <h2 className="text-blue-500 mb-1 text-[18px] font-medium">{obj?.name}</h2>
+              <h3><b>Project Cost - <RupeeIcon /> {obj?.cost}</b>
+              </h3>
             </div>
-          </main>
+          </section>
+          <h3 className="mt-4 text-[18px] pl-4 pt-2 font-semibold text-blue-500 bg-opacity-70 text-center">Investment progress overview</h3>
+          {/* <section className="flex justify-center items-center gap-6 mb-4 flex-wrap"> */}
+          <section className="grid grid-cols-2 justify-center items-center gap-6 mt-4 mb-4 w-[90%] mx-auto">
+            <div className="text-center">
+              <label htmlFor="" className="text-[13px] text-opacity-50">Investment Required</label>
+              <h3 className="text-[15px] font-semibold"><RupeeIcon /> {investmentRequired}</h3>
+            </div>
+            <div className="text-center">
+              <label htmlFor="" className="text-[13px] text-opacity-50">Investment Raised</label>
+              <h3 className="text-[15px] font-semibold"><RupeeIcon /> {investmentRaised}</h3>
+            </div>
+            <div className="text-center">
+              <label htmlFor="" className="text-[13px] text-opacity-50">Current Number of Investors</label>
+              <h3 className="text-[15px] font-semibold"> {currentInvestors}</h3>
+            </div>
+            <div className="text-center">
+              <label htmlFor="" className="text-[13px] text-opacity-50">Remaining Limit of Investors</label>
+              <h3 className="text-[15px] font-semibold">{maxInvestorsRequired}</h3>
+            </div>
+            <div className="text-center">
+              <label htmlFor="" className="text-[13px] text-opacity-50">Max investors</label>
+              <h3 className="text-[15px] font-semibold">5</h3>
+            </div>
+          </section>
           <div className="text-center my-4">
             <Button className={`rounded-md`} onClick={openModal} >Continue</Button>
           </div>
@@ -93,7 +111,7 @@ function InvestmentDetails({ params }) {
 export default InvestmentDetails
 
 
-const Disclaimer = ({ showModal, closeModal}) => {
+const Disclaimer = ({ showModal, closeModal }) => {
   const [agreed, setAgreed] = useState(false);
 
   const handleAgreement = () => {
@@ -132,14 +150,14 @@ const Disclaimer = ({ showModal, closeModal}) => {
             </div>
             <div className="text-center">
               <Link href={`financial-info/invest`}>
-              <Button
-                className={`p-2 mt-4 ${agreed ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-                onClick={handleAgreement}
-                disabled={!agreed}
+                <Button
+                  className={`p-2 mt-4 ${agreed ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                  onClick={handleAgreement}
+                  disabled={!agreed}
                 >
-                Invest Now
-              </Button>
-                </Link>
+                  Invest Now
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
