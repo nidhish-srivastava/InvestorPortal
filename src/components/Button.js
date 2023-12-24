@@ -9,7 +9,7 @@ export default function Button({
   ...restProps
 }) {
   let defaultClassName =
-    "inline-flex items-center flex-1 justify-center rounded-[14px] bg-violet-700 p-[.8rem] flex-shrink-0 text-white text-center text-[17px] font-semibold"
+    "rounded-[14px] bg-violet-700 p-[.8rem] text-white text-center text-[17px] font-semibold"
   !disable
     ? null
     : (defaultClassName += disable

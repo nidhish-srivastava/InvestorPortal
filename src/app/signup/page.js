@@ -37,7 +37,7 @@ function SignUp() {
     const [panNumber, setPanNumber] = useState("")
     const [occupation, setOccupation] = useState("")
     const [income, setIncome] = useState("")
-  const [show,setShow] = useState(false)
+    const [show, setShow] = useState(false)
 
 
     const [bankDetails, setBankDetails] = useState({
@@ -50,22 +50,23 @@ function SignUp() {
     })
 
 
+
     const usersCollectionRef = collection(db, "users");
 
 
     const submitHandler = async (e) => {
         e.preventDefault()
         try {
-                const response = await createUserWithEmailAndPassword(auth, email, password)
-                const userId = response?.user?.uid
-                if (userId?.length > 1) {
-                    try {
-                        await addDoc(usersCollectionRef, { fullName, number, uid: userId, bankDetails, aadharInput, panNumber, occupation, income })
-                        setValue(70)
-                    } catch (error) {
-                        alert(error)
-                    }
+            const response = await createUserWithEmailAndPassword(auth, email, password)
+            const userId = response?.user?.uid
+            if (userId?.length > 1) {
+                try {
+                    await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income })
+                    setValue(70)
+                } catch (error) {
+                    alert(error)
                 }
+            }
         }
         catch (error) {
             alert("Error")
@@ -78,7 +79,6 @@ function SignUp() {
             if (confirmPassword == password) {
                 const recaptch = new RecaptchaVerifier(auth, "recaptch", {})
                 const confirmation = await signInWithPhoneNumber(auth, number, recaptch)
-                console.log(confirmation);
                 setShow(true)
                 setResult(confirmation)
                 setValue(10)
@@ -110,7 +110,7 @@ function SignUp() {
                         <input required type="email" name="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)} />
                         <PhoneInput
                             defaultCountry="IN" value={number} onChange={setNumber} placeholder="Enter Phone Number" />
-      <div id="recaptch"></div>
+                        <div id="recaptch"></div>
                         {/* <input type="tel" value={number} placeholder="Phone Number (+91)" onChange={e => setNumber(e.target.value)} /> */}
                         <div className="relative border overflow-hidden rounded-xl">
                             <input
@@ -159,7 +159,7 @@ function SignUp() {
                 : null}
             {
                 value == 10 ?
-                    <OTP show = {show} sendOTP={sendOTP} setValue={setValue} result={result} number={number} /> : null
+                    <OTP show={show} sendOTP={sendOTP} setValue={setValue} result={result} number={number} /> : null
             }
             {
                 value == 20 ? <Aadhaar aadharInput={aadharInput} setAadharInput={setAadharInput} setValue={setValue} /> : null

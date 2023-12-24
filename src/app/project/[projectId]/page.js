@@ -11,12 +11,27 @@ import Button from "@/components/Button"
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import RupeeIcon from "@/components/Icons/RupeeIcon"
-
 function page() {
     const [obj, setObj] = useState({})
     const param = useParams()
     const projectDocRef = doc(db, `projects/${param.projectId}`)
     const [loading, setLoading] = useState(false)
+
+    const downloadTechnicalPdf = () =>{
+        const pdfUrl = '/Technical_Document.pdf';
+
+        // Create a temporary link element
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = 'Technical_Document.pdf'; // Specify the desired filename
+    
+        // Append the link to the document and trigger a click event
+        document.body.appendChild(link);
+        link.click();
+    
+        // Remove the link from the document
+        document.body.removeChild(link);
+    }
 
     useEffect(() => {
     const fetchDetails = async () => {
@@ -85,11 +100,9 @@ function page() {
                             <p>{obj?.investmentReason}</p>
                         </div>
                         <div className=" flex gap-4 justify-center mt-4 mb-4">
-                            <Link href={`${obj?.id}/technical-info`}>
-                                <Button>Technical Info</Button>
-                            </Link>
+                                <Button onClick={downloadTechnicalPdf}  className={`text-[.94rem]`}>Technical Document</Button>
                             <Link href={`${obj?.id}/financial-info`}>
-                                <Button>Financial Info</Button>
+                                <Button className={`text-[.94rem]`}>Financial Document</Button>
                             </Link>
                         </div>
                     </section>

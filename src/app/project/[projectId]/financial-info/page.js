@@ -51,9 +51,11 @@ function InvestmentDetails({ params }) {
   let investmentRaised = sumHandler(obj?.investmentProgress)
 
   let investmentRequired = obj?.cost - investmentRaised
+  let projectName = obj?.name
+  let phoneNumber = obj?.phoneNumber
 
   useEffect(() => {
-    sessionStorage.setItem("investmentRequired", JSON.stringify({ investmentRequired, maxInvestorsRequired }))
+    sessionStorage.setItem("investmentRequired", JSON.stringify({investmentRequired, maxInvestorsRequired, projectName,phoneNumber}))
   }, [obj])
 
   return (
@@ -96,6 +98,10 @@ function InvestmentDetails({ params }) {
               <label htmlFor="" className="text-[13px] text-opacity-50">Max investors</label>
               <h3 className="text-[15px] font-semibold">5</h3>
             </div>
+            <div className="text-center">
+              <label htmlFor="" className="text-[13px] text-opacity-50">Phone Number</label>
+              <h3 className="text-[15px] font-semibold">{phoneNumber}</h3>
+            </div>
           </section>
           <div className="text-center my-4">
             <Button className={`rounded-md`} onClick={openModal} >Continue</Button>
@@ -117,7 +123,7 @@ const Disclaimer = ({ showModal, closeModal }) => {
   const handleAgreement = () => {
     if (agreed) {
       // Perform the action to proceed with the investment
-      alert("Thank you for agreeing. Proceeding with the investment...");
+      alert("Thank you for agreeing. Proceeding with the process...");
     } else {
       alert("Please read and agree to the disclaimer before proceeding.");
     }
@@ -155,7 +161,7 @@ const Disclaimer = ({ showModal, closeModal }) => {
                   onClick={handleAgreement}
                   disabled={!agreed}
                 >
-                  Invest Now
+                  Continue
                 </Button>
               </Link>
             </div>
