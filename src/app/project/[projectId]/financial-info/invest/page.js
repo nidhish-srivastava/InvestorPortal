@@ -21,7 +21,9 @@ function Invest({ params }) {
     if (investmentAmount < minInvestment || investmentAmount > investmentRequired) {
       return toast.error("Enter Valid Amount")
     }
-    router.push("invest/investmentInterest-success")
+    setTimeout(()=>{
+      router.push("invest/investmentInterest-success")
+    },1000)
     try {
       const investmentDetailsSession = JSON.parse(sessionStorage.getItem("investmentRequired"))
       let projectName = investmentDetailsSession.projectName
