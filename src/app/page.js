@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react'
 import { auth } from '@/utils/firebase'
 import Home from '@/components/Home'
 import Button from '@/components/Button'
+import { useInvestorPanelContextHook } from '@/context/context'
 
 export default function Page() {
-  const [authUser, setAuthUser] = useState("")
+  const {authUser,setAuthUser} = useInvestorPanelContextHook()
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     const listen = () => onAuthStateChanged(auth, (user) => {

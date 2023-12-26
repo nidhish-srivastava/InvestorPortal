@@ -2,12 +2,14 @@
 import Button from "@/components/Button"
 import RupeeIcon from "@/components/Icons/RupeeIcon"
 import NavHeader from "@/components/Navbar/NavHeader"
+import { useInvestorPanelContextHook } from "@/context/context"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import toast, {  Toaster } from "react-hot-toast"
 
 function Invest({ params }) {
   const router = useRouter()
+  const {authUser} = useInvestorPanelContextHook()
   const [investmentRequired, setInvestmentRequired] = useState("")
   const [minInvestment, setMinInvestment] = useState("")
   const [investmentAmount, setInvestmentAmount] = useState(minInvestment)
@@ -31,7 +33,7 @@ function Invest({ params }) {
        await fetch(`http://localhost:3000/api/email`,{
         method : "POST",
         headers : {"Content-Type" : "application/json"},
-        body : JSON.stringify({projectName,investmentAmount,phoneNumber})
+        body : JSON.stringify({projectName,investmentAmount,phoneNumber,email :authUser})
       })
     } catch (error) {
     }
