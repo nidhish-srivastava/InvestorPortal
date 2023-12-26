@@ -11,7 +11,7 @@ import Button from "@/components/Button"
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import RupeeIcon from "@/components/Icons/RupeeIcon"
-function page() {
+function Page() {
     const [obj, setObj] = useState({})
     const param = useParams()
     const projectDocRef = doc(db, `projects/${param.projectId}`)
@@ -112,4 +112,4 @@ function page() {
     )
 }
 
-export default page
+export default Page

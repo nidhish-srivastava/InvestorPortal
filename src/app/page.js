@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { auth } from '@/utils/firebase'
 import Home from '@/components/Home'
 import Button from '@/components/Button'
+
 export default function Page() {
   const [authUser, setAuthUser] = useState("")
   const [loading, setLoading] = useState(true)

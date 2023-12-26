@@ -4,10 +4,10 @@ import { useState } from "react";
 import loginPageHero from "../../assets/loginPage.png";
 import Image from "next/image";
 import ShowPassSvg from "@/components/Icons/ShowPasswordSvg";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
-import toast, { ToastBar, Toaster } from "react-hot-toast";
+import toast, {  Toaster } from "react-hot-toast";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
