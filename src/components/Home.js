@@ -45,8 +45,8 @@ function Home() {
             </div> : 
       <div className="py-4">
       <span className="ml-4 rounded-md bg-blue-200 bg-opacity-19 text-blue-800 text-sm font-bold px-4 py-1">Upcoming Projects</span>
-      {projects.map(e=>(
-        <ProjectCard projectObj = {e}/>
+      {projects.map((e,i)=>(
+        <ProjectCard key={i} projectObj = {e}/>
       ))}
     </div>
       }
