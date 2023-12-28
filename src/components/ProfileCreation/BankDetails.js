@@ -2,12 +2,15 @@
 
 import { BankNames } from "@/utils/constants";
 import PrevIcon from "../Icons/PrevIcon";
+import { LoaderIcon } from "react-hot-toast";
+import Button from "../Button";
 
 export default function BankDetails(props) {
 
-  const { setValue, bankDetails, setBankDetails, submitHandler } = props
+  const { setValue, bankDetails, setBankDetails, submitHandler,loaderBtnClick } = props
   const changeHandler = (e) => {
-    setBankDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    const {name,value} = e.target
+    setBankDetails((prev) => ({ ...prev, [name]: value }))
   }
   return (
     <div className="bg-white flex w-[90%] mx-auto flex-col pt-4 pb-12">
@@ -40,10 +43,11 @@ export default function BankDetails(props) {
         <input required type="text" name="accountNumber" placeholder="Account Number" value={bankDetails.accountNumber} onChange={changeHandler} />
         <input required type="text" name="address" placeholder="Address" value={bankDetails.address} onChange={changeHandler} />
       </div>
-      <button onClick={submitHandler} className="btn mx-auto mt-8"
-      >
-        Submit
-      </button>
+      <Button onClick={submitHandler} className={`btn outline-none border-none ${loaderBtnClick ? "opacity-80" : ""}`}>
+          {loaderBtnClick ? <div className="loader">
+            <LoaderIcon/> Creating Account
+          </div> : "Submit"}
+        </Button>
     </div>
   );
 }

@@ -18,7 +18,7 @@ function InvestmentInterestSuccess() {
            {phoneNumber}
           </b> 
            </p>
-        <p className="text-gray-700 mb-4">A confirmation mail is sent to your email</p>
+        {/* <p className="text-gray-700 mb-4">A confirmation mail is sent to your email</p> */}
       </div>
     </div>
     <Link href={`/`}>

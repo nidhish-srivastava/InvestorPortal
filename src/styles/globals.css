@@ -44,6 +44,13 @@ input,select{
     -moz-appearance: textfield;
 }
 
+.loader{
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center;
+}
+
 /* input,select{
 } */
 /* 

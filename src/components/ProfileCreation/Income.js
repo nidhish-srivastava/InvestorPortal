@@ -9,7 +9,6 @@ export default function Income(props) {
     setHighlightedBtn(e)
     setIncome(e)
   }
-  console.log(highlightedBtn);
   return (
     <div className="bg-white flex max-w-[360px] flex-col pt-4 pb-12 px-3.5">
       {/* <div className="self-stretch flex w-full items-stretch justify-between gap-5"> */}

@@ -26,17 +26,17 @@ function Invest({ params }) {
     setTimeout(()=>{
       router.push("invest/investmentInterest-success")
     },1000)
-    try {
-      const investmentDetailsSession = JSON.parse(sessionStorage.getItem("investmentRequired"))
-      let projectName = investmentDetailsSession.projectName
-      let phoneNumber = investmentDetailsSession.phoneNumber
-       await fetch(`http://localhost:3000/api/email`,{
-        method : "POST",
-        headers : {"Content-Type" : "application/json"},
-        body : JSON.stringify({projectName,investmentAmount,phoneNumber,email :authUser})
-      })
-    } catch (error) {
-    }
+    // try {
+    //   const investmentDetailsSession = JSON.parse(sessionStorage.getItem("investmentRequired"))
+    //   let projectName = investmentDetailsSession.projectName
+    //   let phoneNumber = investmentDetailsSession.phoneNumber
+    //    await fetch(`http://localhost:3000/api/email`,{
+    //     method : "POST",
+    //     headers : {"Content-Type" : "application/json"},
+    //     body : JSON.stringify({projectName,investmentAmount,phoneNumber,email :authUser})
+    //   })
+    // } catch (error) {
+    // }
   }
   return (
     <>

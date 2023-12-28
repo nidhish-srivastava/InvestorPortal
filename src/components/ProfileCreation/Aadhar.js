@@ -13,7 +13,7 @@ export default function Aadhaar(props) {
   return (
     <>
     <div className="bg-white flex flex-col  pt-1.5 pb-12 px-2">
-        <PrevIcon setValue={setValue} number={10} />
+        {/* <PrevIcon setValue={setValue} number={10} /> */}
       <div className=" shadow-lg p-4 flex items-stretch justify-between gap-0 mt-32">
         <Image
           src={Aadhar}
@@ -32,7 +32,7 @@ export default function Aadhaar(props) {
       <input required className="border p-4 mt-4 w-full remove-arrow" placeholder="xxxx xxxx _ _ _ _" type="number" min={0} value={aadharInput} onChange={e=>setAadharInput(e.target.value)} />
       </div>
         </div>
-      <div className="text-center mt-auto">
+      <div className="text-center mt-48">
         <h4 className="text-[11px] text-center">By continuing you agree to our <span className="text-indigo-700">Terms and Conditions</span></h4>
       <button
       className="btn"

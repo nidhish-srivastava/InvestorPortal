@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import signupPage from "../../assets/signupPage.png";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import ShowPassSvg from "@/components/Icons/ShowPasswordSvg";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
@@ -12,9 +12,9 @@ import {
     addDoc,
 } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import OTP from "@/components/ProfileCreation/OTP";
+// import OTP from "@/components/ProfileCreation/OTP";
 import { auth } from "@/utils/firebase";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+// import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import Aadhaar from "@/components/ProfileCreation/Aadhar";
 import PanNumber from "@/components/ProfileCreation/PanNumber";
 import Occupation from "@/components/ProfileCreation/Occupation";
@@ -37,7 +37,7 @@ function SignUp() {
     const [panNumber, setPanNumber] = useState("")
     const [occupation, setOccupation] = useState("")
     const [income, setIncome] = useState("")
-    const [show, setShow] = useState(false)
+    const [finalSubmitLoader, setFinalSubmitHandler] = useState(false)
 
 
     const [bankDetails, setBankDetails] = useState({
@@ -56,6 +56,7 @@ function SignUp() {
 
     const submitHandler = async (e) => {
         e.preventDefault()
+        setFinalSubmitHandler(true)
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password)
             const userId = response?.user?.uid
@@ -63,33 +64,39 @@ function SignUp() {
                 try {
                     await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income })
                     setValue(70)
+                    setFinalSubmitHandler(false)
                 } catch (error) {
+            setFinalSubmitHandler(false)
                     alert(error)
                 }
             }
         }
         catch (error) {
+            setFinalSubmitHandler(false)
             alert("Error")
         }
-    }
-
-
-    const sendOTP = async () => {
-        try {
-            if (confirmPassword == password) {
-                const recaptch = new RecaptchaVerifier(auth, "recaptch", {})
-                const confirmation = await signInWithPhoneNumber(auth, number, recaptch)
-                setShow(true)
-                setResult(confirmation)
-                setValue(10)
-            }
-            else {
-                alert("Password not matching")
-            }
-        } catch (error) {
-            console.log(error);
+        finally{
+            setFinalSubmitHandler(false)
         }
     }
+
+
+    // const sendOTP = async () => {
+    //     try {
+    //         if (confirmPassword == password) {
+    //             const recaptch = new RecaptchaVerifier(auth, "recaptch", {})
+    //             const confirmation = await signInWithPhoneNumber(auth, number, recaptch)
+    //             setShow(true)
+    //             setResult(confirmation)
+    //             setValue(10)
+    //         }
+    //         else {
+    //             alert("Password not matching")
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     return (
         <>
@@ -147,7 +154,7 @@ function SignUp() {
                         </div>
                     </div>
                     <div className="text-center mt-auto">
-                        <button className="btn" type="button" onClick={sendOTP}>Create account</button>
+                        <button className="btn" type="button" onClick={()=>setValue(20)}>Create account</button>
                         <br />
                         <Link href={`/login`}>
                             <span className="text-indigo-700 text-center text-sm not-italic font-normal">
@@ -157,10 +164,10 @@ function SignUp() {
                     </div>
                 </main>
                 : null}
-            {
+            {/* {
                 value == 10 ?
                     <OTP show={show} sendOTP={sendOTP} setValue={setValue} result={result} number={number} /> : null
-            }
+            } */}
             {
                 value == 20 ? <Aadhaar aadharInput={aadharInput} setAadharInput={setAadharInput} setValue={setValue} /> : null
             }
@@ -174,7 +181,7 @@ function SignUp() {
                 value == 50 ? <Income setIncome={setIncome} setValue={setValue} /> : null
             }
             {
-                value == 60 ? <BankDetails bankDetails={bankDetails} setBankDetails={setBankDetails} setValue={setValue} submitHandler={submitHandler} /> : null
+                value == 60 ? <BankDetails loaderBtnClick={finalSubmitLoader} bankDetails={bankDetails} setBankDetails={setBankDetails} setValue={setValue} submitHandler={submitHandler} /> : null
             }
             {
                 value == 70 ? <AccountSuccessModal /> : null

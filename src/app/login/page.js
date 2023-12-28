@@ -7,23 +7,40 @@ import ShowPassSvg from "@/components/Icons/ShowPasswordSvg";
 import {signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
-import toast, {  Toaster } from "react-hot-toast";
+import toast, {  LoaderIcon, Toaster } from "react-hot-toast";
+import Button from "@/components/Button";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter()
+  const [loader,setLoader] = useState(false)
   const loginHandler = async (e) => {
     e.preventDefault()
-    try {
-      const response = await signInWithEmailAndPassword(auth, email, password)
-      if (response.user.email.length > 1) {
-        router.push("/")
+    if(validation()){
+      try {
+        setLoader(true)
+        const response = await signInWithEmailAndPassword(auth, email, password)
+        if (response.user.email.length > 1) {
+          router.push("/")
+          setLoader(false)
+        }
+      } catch (error) {
+        toast.error("Login Failed !!!")
+        setLoader(false)
       }
-    } catch (error) {
-      toast.error("Login Failed !!!")
+      finally{
+        setLoader(false)
+      }
     }
+    else{
+      toast.error("Enter Credentials")
+    }
+  }
+  const validation = () =>{
+    if(email.length==0 || password.length==0) return false
+    return true
   }
   return (
     <>
@@ -61,7 +78,11 @@ function Login() {
         </div>
       </div>
       <div className="text-center mt-auto">
-        <button onClick={loginHandler} className="btn">Log In</button>
+        <Button onClick={loginHandler} className={`btn outline-none border-none ${loader ? "opacity-80" : ""}`}>
+          {loader ? <div className="loader">
+            <LoaderIcon/> Logging In
+          </div> : "Log In"}
+        </Button>
         <br />
       <Link href={`/signup`}>
         <span className="text-indigo-700 text-center text-sm not-italic font-normal"> I don't have an account</span>
