@@ -5,9 +5,6 @@ import SampleProject from '../assets/SampleProject.png'
 import RupeeIcon from './Icons/RupeeIcon'
 
 function ProjectCard({ongoing,projectObj}) {
-  const dateFormatter = () =>{
-    
-  }
   return (
     <div className="p-4 flex gap-2 mt-8 rounded-md bg-blue-100">
     <Image
