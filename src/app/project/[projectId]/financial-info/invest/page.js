@@ -30,8 +30,9 @@ function Invest({ params }) {
       return toast.error("Enter Valid Amount")
     }
     setLoading(true)
+    const docId = investorDetails.docId
     try {
-      const sendReqToAdmin = await addDoc(adminCollectionRef,{...investorDetails,investmentAmount,projectId})
+      const sendReqToAdmin = await addDoc(adminCollectionRef,{...investorDetails,investmentAmount,projectId,docId})
       if(sendReqToAdmin.id.length>1){
           router.push("invest/investmentInterest-success")
           setLoading(false)
@@ -77,7 +78,7 @@ function Invest({ params }) {
           <input className="w-full" value={investmentAmount} min={minInvestment} max={investmentRequired} onChange={e => setInvestmentAmount(e.target.value)} type="number" id="enterAmount" placeholder="Enter the Amount you want to invest" />
         </div>
         <div className="text-center mt-12">
-            <Button className={`btn  border-none ${loading ? "opacity-80" : ""}`} onClick={submitInvestmentInterestHandler}>
+            <Button className={`btn border-none ${loading ? "opacity-80" : ""}`} onClick={submitInvestmentInterestHandler}>
             {loading ? <div className="loader">
             <LoaderIcon/> Submitting
           </div> : "Submit Investment Interest"}
