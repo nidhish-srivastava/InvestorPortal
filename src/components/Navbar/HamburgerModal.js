@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { signOut } from "firebase/auth"
 import { auth } from "@/utils/firebase";
-function Hamburger() {
+import { useRouter } from 'next/navigation';
+function HamburgerModal() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const router = useRouter()
     const signoutHandler = async () => {
       localStorage.removeItem("investorDetails")
       await signOut(auth)
@@ -25,6 +26,8 @@ function Hamburger() {
      {isModalOpen ? (
        <div className="absolute right-5 top-5">
          <div className="bg-white rounded shadow-md flex flex-col gap-4 p-4 min-h-[10rem] cursor-pointer" onClick={toggleModal}>
+          <button onClick={()=>router.push('my-reports')}>My Reports</button>
+          <button onClick={()=>router.push('/suggestion')}>Suggestion</button>
       <button onClick={signoutHandler}>Sign out</button>
          </div>
        </div>
@@ -33,4 +36,4 @@ function Hamburger() {
   )
 }
 
-export default Hamburger
+export default HamburgerModal

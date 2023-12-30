@@ -6,7 +6,7 @@ import BottomNavBar from "./Navbar/BottomNavBar";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/utils/firebase";
-import Hamburger from "./Navbar/Hamburger";
+import HamburgerModal from "./Navbar/HamburgerModal";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -32,7 +32,7 @@ function Home() {
   }, [])
   return (
     <>
-     <Hamburger/>
+     <HamburgerModal/>
       <header className="flex items-center gap-2 p-4 relative -z-[1] rounded-b-lg bg-blue-700 shadow-md">
         <Image src={Dp} width={70} height={70} alt="dp" />
         <h2 className="font-semibold text-white">

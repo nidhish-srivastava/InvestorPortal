@@ -22,6 +22,11 @@ font-weight: 600;
 line-height: normal;
 }
 
+textarea {
+  min-height: 100px;
+}
+
+
 h1,h2,h3,h4,h5{
   margin: 0;
   padding: 0;
@@ -34,6 +39,13 @@ input,select{
   border-radius: 0.75rem;
 }
 
+textarea{
+  border-width: 1.8px;
+  padding: 1rem;
+  width: 100%;
+  outline: none;
+  border-radius: 0.75rem;
+}
 
 .remove-arrow::-webkit-inner-spin-button,
 .remove-arrow::-webkit-outer-spin-button {

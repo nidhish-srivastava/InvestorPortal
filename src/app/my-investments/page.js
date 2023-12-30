@@ -87,6 +87,7 @@ function MyInvestments() {
           <ProjectCard key={e?.id} projectObj={e}/>
           ))}
     </div>
+    
       }
       {/* <section className="mt-4 w-[95%] mx-auto p-2 rounded-lg bg-blue-600 shadow-md flex justify-between">
         <div className="flex flex-col text-white p-2">
