@@ -1,8 +1,9 @@
 "use client"
 import NavHeader from "@/components/Navbar/NavHeader"
 import ProjectCard from "@/components/ProjectCard"
+import { useInvestorPanelContextHook } from "@/context/context"
 import { db } from "@/utils/firebase"
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore"
+import { collection, getDoc, getDocs, query, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -10,7 +11,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 function MyInvestments() {
   const [loading,setLoading] = useState(false)
-  const [userEmail,setUserEmail] = useState("")
+  // const [userEmail,setUserEmail] = useState("")
+  const {authUser} = useInvestorPanelContextHook()
   const usersCollectionRef = collection(db, "users")
   const [myInvestments,setMyInvestments] = useState([])
   // const projectsCollectionRef = collection(db,"projects")
@@ -55,24 +57,24 @@ function MyInvestments() {
       console.error("Error fetching investments:", error);
     }
   };
-  useEffect(()=>{
-    const fetchEmailFromLocalStorage = () => {
-        const email = localStorage.getItem("email");
-        if (email) {
-          setUserEmail(email);
-        } 
-        else {
-          console.log('Email not found in localStorage');
-        }
-    };
-     fetchEmailFromLocalStorage()
-  },[])  
+  // useEffect(()=>{
+  //   const fetchEmailFromLocalStorage = () => {
+  //       const email = localStorage.getItem("email");
+  //       if (email) {
+  //         setUserEmail(email);
+  //       } 
+  //       else {
+  //         console.log('Email not found in localStorage');
+  //       }
+  //   };
+  //    fetchEmailFromLocalStorage()
+  // },[])  
 
   useEffect(() => {
-    if (userEmail.length > 1) {
-      fetchInvestments(userEmail);
+    if (authUser.length > 1) {
+      fetchInvestments(authUser);
     }
-  }, [userEmail]);
+  }, [authUser]);
 
   return (
     <>

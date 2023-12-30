@@ -2,30 +2,43 @@
 import Button from "@/components/Button"
 import RupeeIcon from "@/components/Icons/RupeeIcon"
 import NavHeader from "@/components/Navbar/NavHeader"
-import { useInvestorPanelContextHook } from "@/context/context"
+import { db } from "@/utils/firebase"
+import { addDoc, collection } from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import toast, {  Toaster } from "react-hot-toast"
+import toast, {  Toaster,LoaderIcon } from "react-hot-toast"
 
 function Invest({ params }) {
+  const adminCollectionRef = collection(db,"admin")
   const router = useRouter()
-  const {authUser} = useInvestorPanelContextHook()
   const [investmentRequired, setInvestmentRequired] = useState("")
   const [minInvestment, setMinInvestment] = useState("")
   const [investmentAmount, setInvestmentAmount] = useState(minInvestment)
+  const [investorDetails,setInvestorDetails] = useState({})
+  const [loading,setLoading] = useState(false)
+  const projectId = params.projectId
+
   let investmentDetails
   useEffect(() => {
     investmentDetails = JSON.parse(sessionStorage.getItem("investmentRequired"))
     setInvestmentRequired(investmentDetails.investmentRequired)
     setMinInvestment(Math.ceil(investmentDetails.investmentRequired / investmentDetails?.maxInvestorsRequired))
+    setInvestorDetails(JSON.parse(localStorage.getItem("investorDetails")))
   }, [])
-  const paymentHandler = async () => {
+  const submitInvestmentInterestHandler = async () => {
     if (investmentAmount < minInvestment || investmentAmount > investmentRequired) {
       return toast.error("Enter Valid Amount")
     }
-    setTimeout(()=>{
-      router.push("invest/investmentInterest-success")
-    },1000)
+    setLoading(true)
+    try {
+      const sendReqToAdmin = await addDoc(adminCollectionRef,{...investorDetails,investmentAmount,projectId})
+      if(sendReqToAdmin.id.length>1){
+          router.push("invest/investmentInterest-success")
+          setLoading(false)
+      } 
+    } catch (error) {
+      setLoading(false)
+    }
     // try {
     //   const investmentDetailsSession = JSON.parse(sessionStorage.getItem("investmentRequired"))
     //   let projectName = investmentDetailsSession.projectName
@@ -41,7 +54,7 @@ function Invest({ params }) {
   return (
     <>
       <Toaster />
-      <NavHeader route={`project/${params.projectId}/financial-info`}></NavHeader>
+      <NavHeader route={`project/${projectId}/financial-info`}></NavHeader>
       <main className="w-[95%] mx-auto">
         <br />
         <label className="font-semibold text-[1.1rem] text-blue-500 bg-opacity-70 p-4">
@@ -64,7 +77,11 @@ function Invest({ params }) {
           <input className="w-full" value={investmentAmount} min={minInvestment} max={investmentRequired} onChange={e => setInvestmentAmount(e.target.value)} type="number" id="enterAmount" placeholder="Enter the Amount you want to invest" />
         </div>
         <div className="text-center mt-12">
-            <Button onClick={paymentHandler}>Submit Investment Interest</Button>
+            <Button className={`btn  border-none ${loading ? "opacity-80" : ""}`} onClick={submitInvestmentInterestHandler}>
+            {loading ? <div className="loader">
+            <LoaderIcon/> Submitting
+          </div> : "Submit Investment Interest"}
+            </Button>
         </div>
       </main>
     </>

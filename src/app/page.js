@@ -2,14 +2,17 @@
 import { onAuthStateChanged } from 'firebase/auth'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { auth } from '@/utils/firebase'
+import { auth, db } from '@/utils/firebase'
 import Home from '@/components/Home'
 import Button from '@/components/Button'
 import { useInvestorPanelContextHook } from '@/context/context'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
 export default function Page() {
   const {authUser,setAuthUser} = useInvestorPanelContextHook()
   const [loading, setLoading] = useState(true)
+  const usersCollectionRef = collection(db, "users")
+
   useEffect(() => {
     const listen = () => onAuthStateChanged(auth, (user) => {
       setAuthUser(user?.email)
@@ -17,6 +20,22 @@ export default function Page() {
     })
     listen()
   }, [])
+
+  useEffect(()=>{
+    const fetchInvestorDetails = async(email)=>{
+       if(authUser?.length>1){
+        const userQuery = query(usersCollectionRef, where("email", "==", email));
+          const querySnapshot = await getDocs(userQuery);
+          if (!querySnapshot.empty) {
+            const userDoc = querySnapshot.docs[0].data();
+            const phoneNumber = userDoc.number
+            const fullName = userDoc.fullName
+            localStorage.setItem("investorDetails",JSON.stringify({phoneNumber,fullName}))
+          }
+       }
+    }
+    fetchInvestorDetails(authUser)
+  },[authUser])
 
   // If a refresh happens if the user has logged in,then at that moment,login and signupbtn get displayed,which is not a good UX
   if (loading) {

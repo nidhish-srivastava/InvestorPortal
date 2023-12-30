@@ -5,7 +5,7 @@ function Hamburger() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const signoutHandler = async () => {
-      localStorage.removeItem("email")
+      localStorage.removeItem("investorDetails")
       await signOut(auth)
       location.href = "/"
     }

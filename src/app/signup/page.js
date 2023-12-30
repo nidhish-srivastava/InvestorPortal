@@ -62,7 +62,7 @@ function SignUp() {
             const userId = response?.user?.uid
             if (userId?.length > 1) {
                 try {
-                    localStorage.setItem("email",email)
+                    // localStorage.setItem("email",email)
                     await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email })
                     setValue(70)
                     setFinalSubmitHandler(false)
