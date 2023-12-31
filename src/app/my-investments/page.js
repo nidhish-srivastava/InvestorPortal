@@ -71,10 +71,10 @@ function MyInvestments() {
   // },[])  
 
   useEffect(() => {
-    if (authUser.length > 1) {
+    // if (authUser.length > 1) {
       fetchInvestments(authUser);
-    }
-  }, [authUser]);
+    // }
+  }, []);
 
   return (
     <>
@@ -84,7 +84,7 @@ function MyInvestments() {
             </div> : 
       <div className="py-4">
         {myInvestments?.map((e,i)=>(
-          <ProjectCard key={e?.id} projectObj={e}/>
+          <ProjectCard myInvestmentRoute = {true} key={e?.id} projectObj={e}/>
           ))}
     </div>
     

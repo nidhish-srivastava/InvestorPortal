@@ -31,7 +31,6 @@ function SignUp() {
     const [number, setNumber] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [result, setResult] = useState("");
     const [fullName, setFullName] = useState("")
     const [aadharInput, setAadharInput] = useState("")
     const [panNumber, setPanNumber] = useState("")

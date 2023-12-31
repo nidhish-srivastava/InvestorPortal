@@ -10,7 +10,7 @@ function BottomNavBar() {
     <Link href={`/`}>
    <HomeIconSvg/>
     </Link>
-    <Link href={`/ongoing-projects`}>
+    <Link href={`/`}>
    <ActivityIconSvg/>
     </Link>
     <Link href={`/my-investments`}>
