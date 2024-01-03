@@ -10,10 +10,10 @@ function ProjectCard({ongoing,projectObj,myInvestmentRoute}) {
   useEffect(()=>{
     const name = JSON.parse(localStorage.getItem("investorDetails"))?.fullName
     const filterName = (name) =>{
-      const filterAmountFromArr = projectObj.investmentProgress.filter((e)=>e.investorName==name)[0]?.amountInvested
+      const filterAmountFromArr = projectObj?.investmentProgress.filter((e)=>e.investorName==name)[0]?.amountInvested
       setMyInvestmentAmount(filterAmountFromArr)
     }
-    if(name.length>1){
+    if(name?.length>1){
       filterName(name)
     }
 
