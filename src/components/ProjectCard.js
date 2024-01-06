@@ -34,8 +34,7 @@ function ProjectCard({ongoing,projectObj,myInvestmentRoute}) {
       </>
      : <>
       <h4 className="text-[10px] font-medium">{projectObj?.leader}</h4>
-      <h4 className="text-[10px] font-medium">
-        <RupeeIcon/> {projectObj?.cost} for 1 Year</h4>
+      <h4 className="text-[10px] font-medium"><RupeeIcon/> {projectObj?.cost} for 1 Year</h4>
      </>  
     }
       <Link href={`/project/${projectObj?.id}`}>

@@ -1,7 +1,7 @@
 "use client"
+import RupeeIcon from "@/components/Icons/RupeeIcon"
 import NavHeader from "@/components/Navbar/NavHeader"
 import ProjectCard from "@/components/ProjectCard"
-import { useInvestorPanelContextHook } from "@/context/context"
 import { db } from "@/utils/firebase"
 import { collection, getDoc, getDocs, query, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
@@ -11,11 +11,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 function MyInvestments() {
   const [loading,setLoading] = useState(false)
-  // const [userEmail,setUserEmail] = useState("")
-  const {authUser} = useInvestorPanelContextHook()
   const usersCollectionRef = collection(db, "users")
   const [myInvestments,setMyInvestments] = useState([])
-  // const projectsCollectionRef = collection(db,"projects")
   
 
   const fetchInvestments = async (email) => {
@@ -72,7 +69,11 @@ function MyInvestments() {
 
   useEffect(() => {
     // if (authUser.length > 1) {
-      fetchInvestments(authUser);
+    const storedInvestorDetails = localStorage.getItem("investorDetails");
+    if (storedInvestorDetails) {
+      const parsedInvestorDetails = JSON.parse(storedInvestorDetails);
+      fetchInvestments(parsedInvestorDetails.authUser);
+    }
     // }
   }, []);
 
@@ -87,12 +88,11 @@ function MyInvestments() {
           <ProjectCard myInvestmentRoute = {true} key={e?.id} projectObj={e}/>
           ))}
     </div>
-    
       }
-      {/* <section className="mt-4 w-[95%] mx-auto p-2 rounded-lg bg-blue-600 shadow-md flex justify-between">
+      <section className="mt-12 w-[95%] mx-auto p-2 rounded-lg bg-blue-600 shadow-md flex justify-between">
         <div className="flex flex-col text-white p-2">
           <span>Total Invested</span>
-          <span><RupeeIcon /> 300,000</span>
+          <span><RupeeIcon /> 20000</span>
         </div>
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" width="88" height="66" viewBox="0 0 88 66" fill="none">
@@ -107,7 +107,7 @@ function MyInvestments() {
             </defs>
           </svg>
         </span>
-      </section> */}
+      </section>
     </>
   )
 }

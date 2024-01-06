@@ -6,6 +6,7 @@ export default function Button({
   className,
   overrideClassNames = false,
   children,
+  onClick,
   ...restProps
 }) {
   let defaultClassName =
@@ -24,6 +25,7 @@ export default function Button({
       }
       disabled={disable}
       {...restProps}
+      onClick={onClick}
     >
       {children}
     </button>

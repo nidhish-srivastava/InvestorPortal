@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react'
 import { auth, db } from '@/utils/firebase'
 import Home from '@/components/Home'
 import Button from '@/components/Button'
-import { useInvestorPanelContextHook } from '@/context/context'
 import { collection, getDocs, query, where } from 'firebase/firestore'
+import HeroSection from '@/components/HeroSection'
 
 export default function Page() {
-  const {authUser,setAuthUser} = useInvestorPanelContextHook()
+  const [authUser,setAuthUser] = useState("")
   const [loading, setLoading] = useState(true)
   const usersCollectionRef = collection(db, "users")
+  const [show,setShow] = useState(false)
 
   useEffect(() => {
     const listen = () => onAuthStateChanged(auth, (user) => {
@@ -31,7 +32,7 @@ export default function Page() {
             const phoneNumber = userDoc.number
             const fullName = userDoc.fullName
             const docId = querySnapshot.docs[0].id
-            localStorage.setItem("investorDetails",JSON.stringify({phoneNumber,fullName,docId}))
+            localStorage.setItem("investorDetails",JSON.stringify({phoneNumber,fullName,docId,authUser}))
           }
        }
     }
@@ -45,20 +46,27 @@ export default function Page() {
 
   return (
     <>
-      {authUser?.length > 1 ? <Home /> : <>
-        <div className='flex flex-col justify-center h-screen items-center gap-4'>
-          <Link href={`/login`}>
-            <Button className='w-[332px]'>
-              Log In
-            </Button>
-          </Link>
-          <Link href={`/signup`}>
-            <Button className={`w-[332px]`}>
-              Create account
-            </Button>
-          </Link>
-        </div>
-      </>}
+      {authUser?.length>1 ? <Home /> : 
+      <>
+      {
+        show ? 
+          <div className='flex flex-col justify-center h-screen items-center gap-4'>
+            <Link href={`/login`}>
+              <Button className='w-[332px]'>
+                Log In
+              </Button>
+            </Link>
+            <Link href={`/signup`}>
+              <Button className={`w-[332px]`}>
+                Create account
+              </Button>
+            </Link>
+          </div>
+        : 
+      <HeroSection setShow={setShow}/>
+      }
+      </>
+}
     </>
   )
 }

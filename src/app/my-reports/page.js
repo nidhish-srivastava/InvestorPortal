@@ -6,8 +6,8 @@ function MyReports() {
     <>
     <NavHeader/>
     <div className='mt-8'>
-        <h2>
-        MyReports
+        <h2 className='text-center font-semibold text-xl'>
+        My Reports
         </h2>
         </div>
     </>
