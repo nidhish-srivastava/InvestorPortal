@@ -45,7 +45,7 @@ function Invest({ params }) {
   return (
     <>
       <Toaster />
-      <NavHeader route={`project/${projectId}/financial-info`}></NavHeader>
+      <NavHeader route={`project/${projectId}`}></NavHeader>
       <main className="w-[95%] mx-auto">
         <br />
         <label className="font-semibold text-[1.1rem] text-blue-500 bg-opacity-70 p-4">

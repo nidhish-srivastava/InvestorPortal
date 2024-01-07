@@ -48,8 +48,6 @@ function SignUp() {
         address: ""
     })
 
-
-
     const usersCollectionRef = collection(db, "users");
 
 
@@ -58,11 +56,12 @@ function SignUp() {
         setFinalSubmitHandler(true)
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password)
+            const verified = false
             const userId = response?.user?.uid
             if (userId?.length > 1) {
                 try {
                     // localStorage.setItem("email",email)
-                    await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email })
+                    await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email,verified })
                     setValue(70)
                     setFinalSubmitHandler(false)
                 } catch (error) {

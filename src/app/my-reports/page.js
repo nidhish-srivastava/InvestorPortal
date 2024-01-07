@@ -1,6 +1,6 @@
 "use client"
-import Button from '@/components/Button';
 import NavHeader from '@/components/Navbar/NavHeader';
+import { pdfDownloadHandler } from '@/utils';
 
 function MyReports() {
   // Sample data, replace with your actual data
@@ -8,22 +8,6 @@ function MyReports() {
     { projectName: 'Blogging App', reportId: 1 },
     // Add more reports as needed
   ];
-
-  const downloadHandler = () =>{
-    const pdfUrl = '/Report.pdf';
-
-    // Create a temporary link element
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = 'Report.pdf'; // Specify the desired filename
-
-    // Append the link to the document and trigger a click event
-    document.body.appendChild(link);
-    link.click();
-
-    // Remove the link from the document
-    document.body.removeChild(link);
-  }
 
   return (
     <>
@@ -35,7 +19,7 @@ function MyReports() {
             <ReportCard
               key={report.reportId}
               projectName={report.projectName}
-              onDownload={downloadHandler} // Replace with actual download function
+              onDownload={()=>pdfDownloadHandler("Report")} // Replace with actual download function
             />
           ))}
         </div>
@@ -46,8 +30,6 @@ function MyReports() {
 
 export default MyReports;
 
-
-import React from 'react';
 
 function ReportCard({ projectName, onDownload }) {
   return (

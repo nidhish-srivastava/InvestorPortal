@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import Button from './Button';
 
 function CallToAction() {
   const router = useRouter();
@@ -17,12 +18,12 @@ function CallToAction() {
   Uncover a world of opportunities and find the perfect project that matches your interests.
 </p>
 
-      <button
-        className="bg-[#FFC017] text-xl text-white font-bold py-2 px-8 rounded-xl  hover:bg-[#FFB500]"
+      <Button
+        // className="b text-xl text-white font-bold py-2 px-8 rounded-xl  hover:bg-[#FFB500]"
         onClick={handleExploreProjects}
       >
         Explore Projects
-      </button>
+      </Button>
     </div>
   );
 }

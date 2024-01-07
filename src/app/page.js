@@ -49,7 +49,7 @@ export default function Page() {
       {authUser?.length>1 ? <Home /> : 
       <>
       {
-        show ? 
+        // show ? 
           <div className='flex flex-col justify-center h-screen items-center gap-4'>
             <Link href={`/login`}>
               <Button className='w-[332px]'>
@@ -62,8 +62,8 @@ export default function Page() {
               </Button>
             </Link>
           </div>
-        : 
-      <HeroSection setShow={setShow}/>
+        // : 
+      // <HeroSection setShow={setShow}/>
       }
       </>
 }
