@@ -12,9 +12,7 @@ import {
     addDoc,
 } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-// import OTP from "@/components/ProfileCreation/OTP";
 import { auth } from "@/utils/firebase";
-// import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import Aadhaar from "@/components/ProfileCreation/Aadhar";
 import PanNumber from "@/components/ProfileCreation/PanNumber";
 import Occupation from "@/components/ProfileCreation/Occupation";
@@ -60,7 +58,6 @@ function SignUp() {
             const userId = response?.user?.uid
             if (userId?.length > 1) {
                 try {
-                    // localStorage.setItem("email",email)
                     await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email,verified })
                     setValue(70)
                     setFinalSubmitHandler(false)

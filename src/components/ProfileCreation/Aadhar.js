@@ -2,26 +2,31 @@ import Image from "next/image";
 import Aadhar from '../../assets/Aadhar.png'
 import Button from "../Button";
 import { useRef, useState } from "react";
+import { ref, uploadBytes } from "firebase/storage";
+import { filesDb } from "@/utils/firebase";
+import { v4 } from "uuid";
 
 export default function Aadhaar(props) {
   const {setValue,aadharInput,setAadharInput} = props
   const fileInputRef = useRef(null);
-  const [selectedFileName, setSelectedFileName] = useState(null);
-
+  const [selectedFile,setSelectedFile] = useState({})
 
   const nextHandler = () =>{
-    if(aadharInput.length == 4){
+    if(selectedFile.name.length>1){
+      const imageRef = ref(filesDb,`files/${v4()}`)
+      uploadBytes(imageRef,selectedFile)
       setValue(30)
     }
   }
 
   const uploadAadhar = () =>{
     fileInputRef.current?.click();
+ 
   }
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    setSelectedFileName(selectedFile ? selectedFile.name : null);
+    setSelectedFile(selectedFile)
   };
   
   return (
@@ -56,7 +61,7 @@ export default function Aadhaar(props) {
           onChange={handleFileChange}
           />
         <h2 className="mt-2 text-sm text-gray-700">
-          {selectedFileName && `Selected File: ${selectedFileName}`}
+          {selectedFile.name && `Selected File: ${selectedFile.name}`}
         </h2>
           </div>
       <div className="text-center mt-[9rem]">
