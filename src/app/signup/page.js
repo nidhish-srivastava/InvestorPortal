@@ -28,7 +28,7 @@ import { v4 } from "uuid";
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-    const [value, setValue] = useState(30)
+    const [value, setValue] = useState(0)
     const [email, setEmail] = useState("")
     const [number, setNumber] = useState("")
     const [password, setPassword] = useState("")
