@@ -1,7 +1,7 @@
 "use client"
 import Button from "@/components/Button"
 import RupeeIcon from "@/components/Icons/RupeeIcon"
-import NavHeader from "@/components/Navbar/NavHeader"
+import BackNavHeader from "@/components/Navbar/BackNavHeader"
 import { db } from "@/utils/firebase"
 import { addDoc, collection } from "firebase/firestore"
 import { useRouter } from "next/navigation"
@@ -45,7 +45,7 @@ function Invest({ params }) {
   return (
     <>
       <Toaster />
-      <NavHeader route={`project/${projectId}`}></NavHeader>
+      <BackNavHeader route={`project/${projectId}`}></BackNavHeader>
       <main className="w-[95%] mx-auto">
         <br />
         <label className="font-semibold text-[1.1rem] text-blue-500 bg-opacity-70 p-4">

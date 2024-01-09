@@ -19,6 +19,10 @@ import Occupation from "@/components/ProfileCreation/Occupation";
 import Income from "@/components/ProfileCreation/Income";
 import BankDetails from "@/components/ProfileCreation/BankDetails";
 import AccountSuccessModal from "@/components/ProfileCreation/AccountSuccessModal";
+import PhotoKYC from "@/components/ProfileCreation/PhotoKYC";
+import { ref, uploadBytes } from "firebase/storage";
+import { filesDb } from "@/utils/firebase";
+import { v4 } from "uuid";
 
 
 function SignUp() {
@@ -35,6 +39,8 @@ function SignUp() {
     const [occupation, setOccupation] = useState("")
     const [income, setIncome] = useState("")
     const [finalSubmitLoader, setFinalSubmitHandler] = useState(false)
+    const [aadharCardFile,setAadharCardFile] = useState({})
+    const [investorPic,setInvestorPic] = useState("")
 
 
     const [bankDetails, setBankDetails] = useState({
@@ -51,15 +57,19 @@ function SignUp() {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        setFinalSubmitHandler(true)
         try {
+            const aadharRef = ref(filesDb,`maskedAadhar/${v4()}`)
+            uploadBytes(aadharRef,aadharCardFile)
+            const investorImgRef = ref(filesDb,`investorPic/${v4()}`)
+            uploadBytes(investorImgRef,investorPic)
+            setFinalSubmitHandler(true)
             const response = await createUserWithEmailAndPassword(auth, email, password)
             const verified = false
             const userId = response?.user?.uid
             if (userId?.length > 1) {
                 try {
                     await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email,verified })
-                    setValue(70)
+                    setValue(80)
                     setFinalSubmitHandler(false)
                 } catch (error) {
             setFinalSubmitHandler(false)
@@ -165,22 +175,25 @@ function SignUp() {
                     <OTP show={show} sendOTP={sendOTP} setValue={setValue} result={result} number={number} /> : null
             } */}
             {
-                value == 20 ? <Aadhaar aadharInput={aadharInput} setAadharInput={setAadharInput} setValue={setValue} /> : null
+                value == 20 ? <Aadhaar selectedFile={aadharCardFile} setSelectedFile={setAadharCardFile}  aadharInput={aadharInput} setAadharInput={setAadharInput} setValue={setValue} /> : null
             }
             {
                 value == 30 ? <PanNumber panNumber={panNumber} setPanNumber={setPanNumber} setValue={setValue} /> : null
             }
             {
-                value == 40 ? <Occupation setOccupation={setOccupation} setValue={setValue} /> : null
+                value == 40 ? <PhotoKYC image={investorPic} setImage={setInvestorPic} setValue={setValue}/>: null
             }
             {
-                value == 50 ? <Income setIncome={setIncome} setValue={setValue} /> : null
+                value == 50 ? <Occupation setOccupation={setOccupation} setValue={setValue} /> : null
             }
             {
-                value == 60 ? <BankDetails loaderBtnClick={finalSubmitLoader} bankDetails={bankDetails} setBankDetails={setBankDetails} setValue={setValue} submitHandler={submitHandler} /> : null
+                value == 60 ? <Income setIncome={setIncome} setValue={setValue} /> : null
             }
             {
-                value == 70 ? <AccountSuccessModal /> : null
+                value == 70 ? <BankDetails loaderBtnClick={finalSubmitLoader} bankDetails={bankDetails} setBankDetails={setBankDetails} setValue={setValue} submitHandler={submitHandler} /> : null
+            }
+            {
+                value == 80 ? <AccountSuccessModal /> : null
             }
         </>
     );

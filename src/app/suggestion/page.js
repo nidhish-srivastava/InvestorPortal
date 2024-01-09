@@ -1,6 +1,6 @@
 "use client"
 import Button from "@/components/Button"
-import NavHeader from "@/components/Navbar/NavHeader"
+import BackNavHeader from "@/components/Navbar/BackNavHeader"
 import { db } from "@/utils/firebase"
 import { addDoc, collection } from "firebase/firestore"
 import { useEffect, useState } from "react"
@@ -34,7 +34,7 @@ function Suggestion() {
   return (
     <>
     <Toaster/>
-        <NavHeader/>
+        <BackNavHeader/>
     <div className="w-[95%] mx-auto mt-12">
         <label htmlFor="suggestion" className="text-lg font-semibold">Write a Suggestion</label>
         <textarea name="" id="suggestion" value={suggestion} onChange={e=>setSuggestion(e.target.value)} cols="30" rows="10" placeholder="Write to a Suggestion or an issue to us"></textarea>

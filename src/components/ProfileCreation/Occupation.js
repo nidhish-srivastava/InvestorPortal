@@ -15,7 +15,7 @@ export default function Occupation(props) {
     <>
       <div className="bg-white flex flex-col pt-4 pb-12 px-3.5">
         <div className="flex gap-6 mt-10 mb-4">
-      <PrevIcon setValue={setValue} number={30} />
+      <PrevIcon setValue={setValue} number={40} />
         <h2 className=" text-black text-lg font-semibold">
           Occupation
         </h2>
@@ -31,7 +31,7 @@ export default function Occupation(props) {
           ))}
         </div>
       </div>
-      <button onClick={() => setValue(50)} className=" bg-blue-700 p-4 mt-12 text-white cursor-pointer flex text-center mx-auto flex-col rounded-2xl">
+      <button onClick={() => setValue(60)} className=" bg-blue-700 p-4 mt-12 text-white cursor-pointer flex text-center mx-auto flex-col rounded-2xl">
         Submit
       </button>
     </>

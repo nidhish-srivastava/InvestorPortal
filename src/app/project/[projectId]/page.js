@@ -2,7 +2,7 @@
 import Link from "next/link"
 import SampleProject from '../../../assets/SampleProject.png'
 import Image from "next/image"
-import NavHeader from "@/components/Navbar/NavHeader"
+import BackNavHeader from "@/components/Navbar/BackNavHeader"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { doc, getDoc } from "firebase/firestore"
@@ -79,7 +79,7 @@ function Page() {
 
     return (
         <>
-            <NavHeader>Project Details</NavHeader>
+            <BackNavHeader>Project Details</BackNavHeader>
             {
                 loading ? <div style={{ width: "80%", margin: "4rem auto" }}>
                     <Skeleton count={5} />

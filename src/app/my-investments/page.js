@@ -1,6 +1,6 @@
 "use client"
 import RupeeIcon from "@/components/Icons/RupeeIcon"
-import NavHeader from "@/components/Navbar/NavHeader"
+import BackNavHeader from "@/components/Navbar/BackNavHeader"
 import ProjectCard from "@/components/ProjectCard"
 import { db } from "@/utils/firebase"
 import { collection, getDoc, getDocs, query, where } from "firebase/firestore"
@@ -79,7 +79,7 @@ function MyInvestments() {
 
   return (
     <>
-      <NavHeader>My Investment</NavHeader>
+      <BackNavHeader>My Investment</BackNavHeader>
       {loading ?  <div style={{width : "80%",margin :"4rem auto"}}>
             <Skeleton count={5}/>
             </div> : 

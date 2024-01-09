@@ -1,5 +1,5 @@
 "use client"
-import NavHeader from '@/components/Navbar/NavHeader';
+import BackNavHeader from '@/components/Navbar/BackNavHeader';
 import { pdfDownloadHandler } from '@/utils';
 
 function MyReports() {
@@ -11,7 +11,7 @@ function MyReports() {
 
   return (
     <>
-      <NavHeader />
+      <BackNavHeader />
       <div className="mt-8">
         <h2 className="text-center font-semibold text-xl">My Reports</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">

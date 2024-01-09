@@ -15,7 +15,7 @@ export default function BankDetails(props) {
   return (
     <div className="bg-white flex w-[90%] mx-auto flex-col pt-4 pb-12">
       <div className="flex gap-2 mt-8">
-        <PrevIcon setValue={setValue} number={50} />
+        <PrevIcon setValue={setValue} number={60} />
         <h2 className="text-black text-lg font-semibold">Bank details</h2>
       </div>
       <div className="flex flex-col px-3.5">

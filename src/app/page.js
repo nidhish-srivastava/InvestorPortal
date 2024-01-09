@@ -6,13 +6,11 @@ import { auth, db } from '@/utils/firebase'
 import Home from '@/components/Home'
 import Button from '@/components/Button'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import HeroSection from '@/components/HeroSection'
 
 export default function Page() {
   const [authUser,setAuthUser] = useState("")
   const [loading, setLoading] = useState(true)
   const usersCollectionRef = collection(db, "users")
-  const [show,setShow] = useState(false)
 
   useEffect(() => {
     const listen = () => onAuthStateChanged(auth, (user) => {

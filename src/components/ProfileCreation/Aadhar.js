@@ -1,20 +1,14 @@
 import Image from "next/image";
 import Aadhar from '../../assets/Aadhar.png'
 import Button from "../Button";
-import { useRef, useState } from "react";
-import { ref, uploadBytes } from "firebase/storage";
-import { filesDb } from "@/utils/firebase";
-import { v4 } from "uuid";
+import { useRef } from "react";
 
 export default function Aadhaar(props) {
-  const {setValue,aadharInput,setAadharInput} = props
+  const {setValue,aadharInput,setAadharInput,selectedFile,setSelectedFile} = props
   const fileInputRef = useRef(null);
-  const [selectedFile,setSelectedFile] = useState({})
 
   const nextHandler = () =>{
     if(selectedFile.name.length>1){
-      const imageRef = ref(filesDb,`files/${v4()}`)
-      uploadBytes(imageRef,selectedFile)
       setValue(30)
     }
   }
@@ -32,7 +26,6 @@ export default function Aadhaar(props) {
   return (
     <>
     <div className="bg-white flex flex-col  pb-4 px-2">
-        {/* <PrevIcon setValue={setValue} number={10} /> */}
       <div className=" shadow-lg p-4 flex items-stretch justify-between gap-0 mt-28 mb-4">
         <Image
           src={Aadhar}

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import PrevIcon from "../Icons/PrevIcon"
 
-function NavHeader({ route, children }) {
+function BackNavHeader({ route, children }) {
   return (
     <div className="flex gap-2 px-2 mt-2 items-center">
       <Link href={`/${route ? route : "projects"}`}>
@@ -12,4 +12,4 @@ function NavHeader({ route, children }) {
   )
 }
 
-export default NavHeader
+export default BackNavHeader
