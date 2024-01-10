@@ -5,8 +5,8 @@ import Image from 'next/image';
 function Header() {
   const [username,setUsername] = useState("")
    useEffect(()=>{
-    const name = localStorage.getItem("investorDetails")
-    setUsername(JSON.parse(name).fullName);
+      const name = JSON.parse(localStorage.getItem("investorDetails"))
+      setUsername(name?.fullName)
    },[])
 
   return (

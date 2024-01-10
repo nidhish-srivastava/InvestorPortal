@@ -23,6 +23,7 @@ import PhotoKYC from "@/components/ProfileCreation/PhotoKYC";
 import { ref, uploadBytes } from "firebase/storage";
 import { filesDb } from "@/utils/firebase";
 import { v4 } from "uuid";
+import toast, { Toaster } from "react-hot-toast";
 
 
 function SignUp() {
@@ -54,6 +55,13 @@ function SignUp() {
 
     const usersCollectionRef = collection(db, "users");
 
+    const nextHandler = () =>{
+        if(number==null) return toast.error("Enter Phone Number")
+        if(email.length==0) return toast.error("Enter email")
+        if(password!==confirmPassword) return toast.error("Password not Matching")
+        if(password?.length<6) return toast.error("Password should be of length 6 or more")
+        setValue(20)
+    }
 
     const submitHandler = async (e) => {
         e.preventDefault()
@@ -106,6 +114,7 @@ function SignUp() {
 
     return (
         <>
+        <Toaster/>
             {value == 0 ?
                 <main className="flex flex-col items-center h-screen pb-12">
                     <div className="flex items-center">
@@ -160,7 +169,7 @@ function SignUp() {
                         </div>
                     </div>
                     <div className="text-center mt-auto">
-                        <button className="btn" type="button" onClick={()=>setValue(20)}>Create account</button>
+                        <button className="btn" type="button" onClick={nextHandler}>Create account</button>
                         <br />
                         <Link href={`/login`}>
                             <span className="text-indigo-700 text-center text-sm not-italic font-normal">

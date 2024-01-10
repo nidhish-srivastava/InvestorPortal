@@ -44,7 +44,7 @@ export default function Page() {
 
   return (
     <>
-      {authUser?.length>1 ? <Home  /> : 
+      {authUser?.length>1 ? <Home/> : 
       <>
       {
         // show ? 
@@ -60,7 +60,6 @@ export default function Page() {
               </Button>
             </Link>
           </div>
-        // : 
       // <HeroSection setShow={setShow}/>
       }
       </>

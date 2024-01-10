@@ -1,3 +1,4 @@
+"use client"
 import BottomNavBar from "@/components/Navbar/BottomNavBar"
 import Header from "@/components/Navbar/Header"
 

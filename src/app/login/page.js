@@ -23,7 +23,6 @@ function Login() {
         setLoader(true)
         const response = await signInWithEmailAndPassword(auth, email, password)
         if (response.user.email.length > 1) {
-          // localStorage.setItem("email",email)
           router.push("/")
           setLoader(false)
         }
