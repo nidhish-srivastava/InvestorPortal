@@ -44,7 +44,7 @@ export default function Page() {
 
   return (
     <>
-      {authUser?.length>1 ? <Home /> : 
+      {authUser?.length>1 ? <Home  /> : 
       <>
       {
         // show ? 

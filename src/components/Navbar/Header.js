@@ -1,8 +1,13 @@
+import { useEffect, useState } from 'react';
 import Dp from '../../assets/Dp.png';
 import Image from 'next/image';
 
 function Header() {
-  const userName = "Investor"; // Replace this with the user's actual name if available
+  const [username,setUsername] = useState("")
+   useEffect(()=>{
+    const name = localStorage.getItem("investorDetails")
+    setUsername(JSON.parse(name).fullName);
+   },[])
 
   return (
     <header className="flex items-center gap-2 p-4 relative -z-[1] rounded-b-lg bg-blue-700 shadow-md">
@@ -10,7 +15,7 @@ function Header() {
         <Image src={Dp} layout="fill" objectFit="cover" alt="Investor Profile Picture" />
       </div>
       <h2 className="font-semibold text-white">
-        Hi {userName}
+        Hi {username}
       </h2>
     </header>
   );

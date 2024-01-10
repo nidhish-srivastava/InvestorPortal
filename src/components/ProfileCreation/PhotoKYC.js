@@ -65,7 +65,7 @@ function PhotoKYC({setValue,image,setImage}) {
           image?.name?.length >1 ? 
           <Button className={`w-[45%]`} onClick={()=>setValue(50)}>Next</Button>
           : 
-          <Button onClick={uploadImage} className={`w-[45%]`}>Upload</Button>
+          <Button onClick={uploadImage} className={`w-[45%]`}>Capture</Button>
         }
           <h2 className="mt-2 text-sm text-gray-700">
           {image?.name && `Selected File: ${image?.name}`}
