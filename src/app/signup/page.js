@@ -56,8 +56,10 @@ function SignUp() {
     const usersCollectionRef = collection(db, "users");
 
     const nextHandler = () =>{
+        if(fullName.length==0) return toast.error("Enter name")
         if(number==null) return toast.error("Enter Phone Number")
         if(email.length==0) return toast.error("Enter email")
+        if(number.length==0) return toast.error("Enter phone number")
         if(password!==confirmPassword) return toast.error("Password not Matching")
         if(password?.length<6) return toast.error("Password should be of length 6 or more")
         setValue(20)
