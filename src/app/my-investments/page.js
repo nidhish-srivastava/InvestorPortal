@@ -92,7 +92,7 @@ function MyInvestments() {
       <section className="mt-12 w-[95%] mx-auto p-2 rounded-lg bg-blue-600 shadow-md flex justify-between">
         <div className="flex flex-col text-white p-2">
           <span>Total Invested</span>
-          <span><RupeeIcon /> 20000</span>
+          <span><RupeeIcon /> </span>
         </div>
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" width="88" height="66" viewBox="0 0 88 66" fill="none">
