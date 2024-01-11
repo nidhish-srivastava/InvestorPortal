@@ -76,7 +76,7 @@ function SignUp() {
             const userId = response?.user?.uid
             if (userId?.length > 1) {
                 try {
-                    await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email,verified })
+                    await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email,verified,uid : userId })
                     setValue(80)
                     setFinalSubmitHandler(false)
                 } catch (error) {
