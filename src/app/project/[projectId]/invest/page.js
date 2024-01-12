@@ -35,8 +35,8 @@ function Invest({ params }) {
       const sendReqToAdmin = await addDoc(adminCollectionRef,{...investorDetails,investmentAmount,projectId,docId})
       if(sendReqToAdmin.id.length>1){
           router.push("invest/investmentInterest-success")
-          setLoading(false)
-      } 
+        } 
+        setLoading(false)
     } catch (error) {
       setLoading(false)
     }

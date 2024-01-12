@@ -33,7 +33,7 @@ export default function Page() {
           }
           if (!querySnapshot.empty) {
             const userDoc = querySnapshot.docs[0].data();
-            const phoneNumber = userDoc.number
+            const phoneNumber = userDoc.phoneNumber
             const fullName = userDoc.fullName
             const docId = querySnapshot.docs[0].id
             localStorage.setItem("investorDetails",JSON.stringify({phoneNumber,fullName,docId,authUser}))
