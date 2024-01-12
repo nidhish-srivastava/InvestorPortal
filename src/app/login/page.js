@@ -5,10 +5,11 @@ import loginPageHero from "../../assets/loginPage.png";
 import Image from "next/image";
 import ShowPassSvg from "@/components/Icons/ShowPasswordSvg";
 import {signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/utils/firebase";
+import { auth, db } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
 import toast, {  LoaderIcon, Toaster } from "react-hot-toast";
 import Button from "@/components/Button";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,18 +17,24 @@ function Login() {
   const [password, setPassword] = useState("");
   const router = useRouter()
   const [loader,setLoader] = useState(false)
+  const userCollectionRef = collection(db,"users")
   const loginHandler = async (e) => {
     e.preventDefault()
     if(validation()){
       try {
         setLoader(true)
+        const userQuery = query(userCollectionRef,where("email","==",email))
+        const querySnapshot = await getDocs(userQuery);
+        if(userQuery,querySnapshot.docs[0].data()?.isBanned){
+          return toast.error("You are banned !!!")
+        }
         const response = await signInWithEmailAndPassword(auth, email, password)
         if (response.user.email.length > 1) {
           router.push("/")
           setLoader(false)
         }
       } catch (error) {
-        toast.error("Login Failed !!!")
+        toast.error("Login Failed,Check Credentials !!!")
         setLoader(false)
       }
       finally{
@@ -55,7 +62,6 @@ function Login() {
       <div className="flex flex-col gap-2 mt-12 w-[90%]">
         <input
           value={email}
-          required
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           placeholder="Email address"
@@ -78,7 +84,7 @@ function Login() {
         </div>
       </div>
       <div className="text-center mt-auto">
-        <Button onClick={loginHandler} className={`btn outline-none border-none ${loader ? "opacity-80" : ""}`}>
+        <Button onClick={loginHandler} className={`btn border-none ${loader ? "opacity-80" : ""}`}>
           {loader ? <div className="loader">
             <LoaderIcon/> Logging In
           </div> : "Log In"}

@@ -59,6 +59,7 @@ function SignUp() {
         if(fullName.length==0) return toast.error("Enter name")
         if(number==null) return toast.error("Enter Phone Number")
         if(email.length==0) return toast.error("Enter email")
+        if(email!=email.toLowerCase()) return toast.error("email should be in lowercase")
         if(number.length==0) return toast.error("Enter phone number")
         if(password!==confirmPassword) return toast.error("Password not Matching")
         if(password?.length<6) return toast.error("Password should be of length 6 or more")
@@ -74,11 +75,10 @@ function SignUp() {
             uploadBytes(investorImgRef,investorPic)
             setFinalSubmitHandler(true)
             const response = await createUserWithEmailAndPassword(auth, email, password)
-            const verified = false
             const userId = response?.user?.uid
             if (userId?.length > 1) {
                 try {
-                    await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email,verified,uid : userId })
+                    await addDoc(usersCollectionRef, { fullName, number, bankDetails, aadharInput, panNumber, occupation, income,email,isBanned:false,verified:false,uid : userId })
                     setValue(80)
                     setFinalSubmitHandler(false)
                 } catch (error) {
