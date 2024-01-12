@@ -11,6 +11,7 @@ export default function Page() {
   const [authUser,setAuthUser] = useState("")
   const [loading, setLoading] = useState(true)
   const usersCollectionRef = collection(db, "users")
+  const [isBanned,setIsBanned] = useState(false)
 
   useEffect(() => {
     const listen = () => onAuthStateChanged(auth, (user) => {
@@ -25,6 +26,11 @@ export default function Page() {
        if(authUser?.length>1){
         const userQuery = query(usersCollectionRef, where("email", "==", email));
           const querySnapshot = await getDocs(userQuery);
+          const userDoc = querySnapshot?.docs[0].data();
+          if(userDoc?.isBanned==true){
+            setIsBanned(true)
+            return
+          }
           if (!querySnapshot.empty) {
             const userDoc = querySnapshot.docs[0].data();
             const phoneNumber = userDoc.number
@@ -44,7 +50,7 @@ export default function Page() {
 
   return (
     <>
-      {authUser?.length>1 ? <Home/> : 
+      {(authUser?.length>1 && !isBanned) ? <Home/> : 
       <>
       {
         // show ? 
