@@ -2,6 +2,7 @@
 import RupeeIcon from "@/components/Icons/RupeeIcon"
 import BackNavHeader from "@/components/Navbar/BackNavHeader"
 import ProjectCard from "@/components/ProjectCard"
+import { sumHandler } from "@/utils"
 import { db } from "@/utils/firebase"
 import { collection, getDoc, getDocs, query, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
@@ -13,7 +14,7 @@ function MyInvestments() {
   const [loading,setLoading] = useState(false)
   const usersCollectionRef = collection(db, "users")
   const [myInvestments,setMyInvestments] = useState([])
-  
+  const [totalInvested,setTotalInvested] = useState(0)
 
   const fetchInvestments = async (email) => {
     setLoading(true)
@@ -74,9 +75,20 @@ function MyInvestments() {
       const parsedInvestorDetails = JSON.parse(storedInvestorDetails);
       fetchInvestments(parsedInvestorDetails.authUser);
     }
-    // }
   }, []);
-
+  
+  useEffect(()=>{
+    myInvestmentSearch()
+  },[loading])
+ 
+  const myInvestmentArr = []
+  const myInvestmentSearch = () =>{
+     myInvestments.map((e)=>{
+      const data = e.investmentProgress.find(e=>e.investorName='Test11')
+      myInvestmentArr.push(data)
+    })
+    setTotalInvested(sumHandler(myInvestmentArr))
+  }
   return (
     <>
       <BackNavHeader>My Investment</BackNavHeader>
@@ -92,7 +104,7 @@ function MyInvestments() {
       <section className="mt-12 w-[95%] mx-auto p-2 rounded-lg bg-blue-600 shadow-md flex justify-between">
         <div className="flex flex-col text-white p-2">
           <span>Total Invested</span>
-          <span><RupeeIcon /> </span>
+          <span><RupeeIcon /> {totalInvested}</span>
         </div>
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" width="88" height="66" viewBox="0 0 88 66" fill="none">
