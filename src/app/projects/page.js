@@ -38,7 +38,7 @@ function Home() {
           <Skeleton count={5} />
         </div>
       ) : (
-        <div className="py-6 mx-4">
+        <div className="py-6 mx-4 mb-24">
           <h2 className="text-xl font-bold text-blue-800 mb-4">
            All Projects
           </h2>
