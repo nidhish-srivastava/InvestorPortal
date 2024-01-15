@@ -15,6 +15,7 @@ function MyInvestments() {
   const usersCollectionRef = collection(db, "users")
   const [myInvestments,setMyInvestments] = useState([])
   const [totalInvested,setTotalInvested] = useState(0)
+  const [investorName,setInvestorName] = useState("")
 
   const fetchInvestments = async (email) => {
     setLoading(true)
@@ -41,10 +42,10 @@ function MyInvestments() {
             }
           });
   
-          await Promise.all(fetchProjectPromises);
-  
           // Set the state after all project data is fetched
           setMyInvestments(myInvestmentsArr);
+          await Promise.all(fetchProjectPromises);
+      
         } else {
           console.log('User not found');
         }
@@ -55,40 +56,53 @@ function MyInvestments() {
       console.error("Error fetching investments:", error);
     }
   };
-  // useEffect(()=>{
-  //   const fetchEmailFromLocalStorage = () => {
-  //       const email = localStorage.getItem("email");
-  //       if (email) {
-  //         setUserEmail(email);
-  //       } 
-  //       else {
-  //         console.log('Email not found in localStorage');
-  //       }
-  //   };
-  //    fetchEmailFromLocalStorage()
-  // },[])  
+
+  useEffect(()=>{
+    const id = setTimeout(()=>{
+      // const filteredMyInvestments = []
+       const filterMyStuff = () => myInvestments.map((e)=>{
+              const filter = e.investmentProgress.filter(e=>e.investorName==investorName)
+              return filter
+              // filteredMyInvestments.push(filter)
+        })
+        const final = []
+        const findSum = () =>{
+          const sumMap = filterMyStuff().map(e=>{
+            const nest = e.map(e2=>{
+              final.push(e2)
+            })
+          })
+        }
+        findSum()
+        setTotalInvested(sumHandler(final))
+    },1000)
+    return ()=> clearInterval(id)
+  },[myInvestments])
 
   useEffect(() => {
-    // if (authUser.length > 1) {
     const storedInvestorDetails = localStorage.getItem("investorDetails");
     if (storedInvestorDetails) {
       const parsedInvestorDetails = JSON.parse(storedInvestorDetails);
-      fetchInvestments(parsedInvestorDetails.authUser);
+      fetchInvestments(parsedInvestorDetails?.authUser);
+      setInvestorName(parsedInvestorDetails?.fullName)
     }
   }, []);
   
-  useEffect(()=>{
-    myInvestmentSearch()
-  },[loading])
+
  
-  const myInvestmentArr = []
-  const myInvestmentSearch = () =>{
-     myInvestments.map((e)=>{
-      const data = e.investmentProgress.find(e=>e.investorName='Test11')
-      myInvestmentArr.push(data)
-    })
-    setTotalInvested(sumHandler(myInvestmentArr))
-  }
+  // useEffect(()=>{
+  //   const myInvestmentArr = []
+  //   const myInvestmentSearch = () =>{
+  //      myInvestments.map((e)=>{
+  //       const data = e.investmentProgress.find(e=>e.investorName='Test11')
+  //       console.log(data);
+  //       myInvestmentArr.push(data)
+  //     })
+  //     setTotalInvested(sumHandler(myInvestmentArr))
+  //   }
+  //   myInvestmentSearch()
+  // },[])
+  
   return (
     <>
       <BackNavHeader>My Investment</BackNavHeader>
