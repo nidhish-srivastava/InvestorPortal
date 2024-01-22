@@ -1,6 +1,8 @@
 "use client"
 import RupeeIcon from "@/components/Icons/RupeeIcon"
 import BackNavHeader from "@/components/Navbar/BackNavHeader"
+import HamburgerModal from "@/components/Navbar/HamburgerModal"
+import Header from "@/components/Navbar/Header"
 import ProjectCard from "@/components/ProjectCard"
 import { sumHandler } from "@/utils"
 import { db } from "@/utils/firebase"
@@ -105,7 +107,7 @@ function MyInvestments() {
   
   return (
     <>
-      <BackNavHeader>My Investment</BackNavHeader>
+      <h1 className="heading-style-1">My Investments</h1>
       {loading ?  <div style={{width : "80%",margin :"4rem auto"}}>
             <Skeleton count={5}/>
             </div> : 

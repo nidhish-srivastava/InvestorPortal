@@ -7,14 +7,14 @@ import WalletIconSvg from '../Icons/WalletIconSvg'
 function BottomNavBar() {
   return (
     <div className="fixed bottom-0 p-5 w-[100%] flex justify-between items-center rounded-tl-lg rounded-tr-lg bg-blue-700 shadow-md">
-    <Link href={`/`}>
+    <Link href={`/projects`}>
    <HomeIconSvg/>
     </Link>
     {/* <Link href={`/trending-projects`}> */}
-    <Link href={`/projects`}>
+    <Link href={`/my-investments`}>
    <ActivityIconSvg/>
     </Link>
-    <Link href={`/my-investments`}>
+    <Link href={`/wallet`}>
    <WalletIconSvg/>
     </Link>
   </div>
