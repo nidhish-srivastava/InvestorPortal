@@ -8,6 +8,7 @@ import HamburgerModal from "@/components/Navbar/HamburgerModal";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Header from "@/components/Navbar/Header";
+import AllProjectsWrapper from "@/components/AllProjectsWrapper";
 
 function Home() {
   const projectCollectionRef = collection(db, "projects");
@@ -28,25 +29,24 @@ function Home() {
     };
     getProjects();
   }, []);
-
   return (
     <>
       <HamburgerModal />
       <Header />
-          <h2 className="heading-style-1">
-           All Projects
-          </h2>
+      <h2 className="heading-style-1">
+        All Projects
+      </h2>
       {loading ? (
         <div style={{ width: "80%", margin: "4rem auto" }}>
           <Skeleton count={5} />
         </div>
       ) : (
         <div className=" mb-24">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AllProjectsWrapper>
             {projects.map((e, i) => (
               <ProjectCard key={i} projectObj={e} />
             ))}
-          </div>
+          </AllProjectsWrapper>
         </div>
       )}
       <BottomNavBar />

@@ -11,16 +11,9 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 function Wallet() {
   const [totalInvested,setTotalInvested] = useState(0)
-  // const current = totalInvested+Math.floor((Math.random()*10).toString())
   const current = totalInvested+10
   const [loading,setLoading] = useState(false)
   const returns = current - totalInvested
-  // useEffect(()=>{
-  //   const totalInvested = JSON.parse(
-  //     sessionStorage.getItem("totalInvested")
-  //     )
-  //     setTotalInvested(totalInvested)
-  // },[])
 
   return (
     <>

@@ -13,7 +13,7 @@ function BottomNavBar() {
     <Link href={`/trending-projects`}>
    <ActivityIconSvg/>
     </Link>
-    <Link href={`/wallet`}>
+    <Link href={`/portfolio`}>
    <WalletIconSvg/>
     </Link>
   </div>
