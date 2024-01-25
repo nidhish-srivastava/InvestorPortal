@@ -7,9 +7,7 @@ function TrendingProjects() {
     <>
     <Header/>
     <BottomNavBar/>
-    <div className="py-4">
-      <span className="ml-4 rounded-md bg-blue-200 bg-opacity-19 text-blue-800 text-sm font-bold px-4 py-1">Trending Projects</span>
-    </div>
+    <h1 className="heading-style-1">Popular Projects</h1>
     </>
   )
 }

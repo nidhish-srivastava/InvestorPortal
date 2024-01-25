@@ -33,15 +33,15 @@ function Home() {
     <>
       <HamburgerModal />
       <Header />
+          <h2 className="heading-style-1">
+           All Projects
+          </h2>
       {loading ? (
         <div style={{ width: "80%", margin: "4rem auto" }}>
           <Skeleton count={5} />
         </div>
       ) : (
-        <div className="py-6 mx-4 mb-24">
-          <h2 className="text-xl font-bold text-blue-800 mb-4">
-           All Projects
-          </h2>
+        <div className=" mb-24">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((e, i) => (
               <ProjectCard key={i} projectObj={e} />
