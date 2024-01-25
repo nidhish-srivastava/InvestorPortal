@@ -11,10 +11,17 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 function Wallet() {
   const [totalInvested,setTotalInvested] = useState(0)
-  const current = totalInvested+10
+  const [current,setCurrent] = useState(0)
   const [loading,setLoading] = useState(false)
-  const returns = current - totalInvested
-
+  const returns = () =>{
+    if(totalInvested==0) return 0
+    else {
+      return current - totalInvested
+    }
+  }
+  useEffect(()=>{
+    if(totalInvested==0) setCurrent(0)
+  },[totalInvested])
   return (
     <>
     <div className="bg-blue-700">
@@ -34,11 +41,11 @@ function Wallet() {
       </div>
       <div>
         <label htmlFor="" className="wallet-label">RETURNS</label>
-        <h3 className="font-semibold"><RupeeIcon/> {returns}</h3>
+        <h3 className="font-semibold"><RupeeIcon/> {returns()}</h3>
       </div>
       <div>
         <label htmlFor="" className="wallet-label">TOTAL RETURNS %</label>
-        <h3 className="font-semibold">{(returns)*.01} %</h3>
+        <h3 className="font-semibold">{(returns())*.01} %</h3>
       </div>
     </div>
 }
