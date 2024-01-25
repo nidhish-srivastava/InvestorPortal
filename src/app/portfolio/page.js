@@ -45,7 +45,9 @@ function Wallet() {
     </div>
     <BottomNavBar/>
     </div>
+    <div className="mb-24">
     <MyInvestments setTotalInvested={setTotalInvested} loading={loading} setLoading={setLoading}/>
+    </div>
     </>
   )
 }
