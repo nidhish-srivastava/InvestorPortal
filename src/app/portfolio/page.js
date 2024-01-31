@@ -21,6 +21,7 @@ function Wallet() {
   }
   useEffect(()=>{
     if(totalInvested==0) setCurrent(0)
+    else setCurrent(totalInvested+10)
   },[totalInvested])
   return (
     <>
