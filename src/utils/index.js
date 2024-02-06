@@ -1,6 +1,6 @@
 export const sumHandler = (arr) =>{
     const sum = arr?.reduce((acc,curr)=>{
-       return acc + curr.amountInvested
+       return acc + parseFloat(curr.investmentAmount)
       },0)
       return sum
 }
@@ -23,4 +23,4 @@ export const pdfDownloadHandler = (name) =>{
 
     // Remove the link from the document
     document.body.removeChild(link);
-  }
+}

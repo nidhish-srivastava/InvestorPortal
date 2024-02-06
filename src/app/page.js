@@ -33,9 +33,9 @@ export default function Page() {
           }
           if (!querySnapshot.empty) {
             const userDoc = querySnapshot.docs[0].data();
-            const {phoneNumber,fullName} = userDoc
+            const {number,fullName} = userDoc
             const docId = querySnapshot.docs[0].id
-            localStorage.setItem("investorDetails",JSON.stringify({phoneNumber,fullName,docId,authUser}))
+            localStorage.setItem("investorDetails",JSON.stringify({number,fullName,docId,authUser}))
           }
        }
     }
@@ -52,7 +52,6 @@ export default function Page() {
       {(authUser?.length>1 && !isBanned) ? <Home/> : 
       <>
       {
-        // show ? 
           <div className='flex flex-col justify-center h-screen items-center gap-4'>
             <Link href={`/login`}>
               <Button className='w-[332px]'>
@@ -65,7 +64,6 @@ export default function Page() {
               </Button>
             </Link>
           </div>
-      // <HeroSection setShow={setShow}/>
       }
       </>
 }

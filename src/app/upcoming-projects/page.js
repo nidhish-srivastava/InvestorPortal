@@ -1,17 +1,23 @@
 "use client"
 import AllProjectsWrapper from "@/components/AllProjectsWrapper";
 import BottomNavBar from "@/components/Navbar/BottomNavBar"
+import HamburgerModal from "@/components/Navbar/HamburgerModal";
 import Header from "@/components/Navbar/Header"
 import ProjectCard from "@/components/ProjectCard";
+import TotalInvestment from "@/components/TotalInvestment";
+import { sumHandler } from "@/utils";
 import { db } from "@/utils/firebase";
+import { useMyInvestmentHook } from "@/utils/hooks/useMyInvestmentHook";
 import { collection, getDocs } from "firebase/firestore";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-function TrendingProjects() {
+function UpcomingProjects() {
   const projectCollectionRef = collection(db, "projects");
-  const [trendingProjects,setTrendingProjects] = useState([])
+  const myInvestments = useMyInvestmentHook()
+  const [upcomingProjects,setUpcomingProjects] = useState([])
   const [loading, setLoading] = useState(false);
   useEffect(()=>{
     const fetchTrendingProjects = async()=>{
@@ -20,7 +26,7 @@ function TrendingProjects() {
         const data = await getDocs(projectCollectionRef);
         const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) 
         const filter = result.sort((a,b)=>b.cost-a.cost)
-        setTrendingProjects(filter)
+        setUpcomingProjects(filter)
         setLoading(false)
       } catch (error) {
         setLoading(false);
@@ -31,24 +37,30 @@ function TrendingProjects() {
   },[])
   return (
     <>
+    <HamburgerModal/>
     <Header/>
     <BottomNavBar/>
-    <h1 className="heading-style-1">Popular Projects</h1>
+    <h1 className="heading-style-1">Upcoming Projects</h1>
     {loading ? (
         <div style={{ width: "80%", margin: "4rem auto" }}>
           <Skeleton count={5} />
         </div>
       ) : (
-        <div className=" mb-24">
+        <div className="mb-96">
           <AllProjectsWrapper>
-            {trendingProjects.map((e, i) => (
+            {upcomingProjects.map((e, i) => (
               <ProjectCard key={i} projectObj={e} />
               ))}
               </AllProjectsWrapper>
         </div>
       )}
+      <div className="bottom-24 fixed w-full">
+        <Link href={`/my-investments`}>
+      <TotalInvestment totalInvestment={sumHandler(myInvestments)}/>
+        </Link>
+      </div>
     </>
   )
 }
 
-export default TrendingProjects
+export default UpcomingProjects

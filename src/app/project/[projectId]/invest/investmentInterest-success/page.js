@@ -21,7 +21,7 @@ function InvestmentInterestSuccess() {
         {/* <p className="text-gray-700 mb-4">A confirmation mail is sent to your email</p> */}
       </div>
     </div>
-    <Link href={`/`}>
+    <Link href={`/projects`}>
       <Button>Home</Button>
     </Link>
     </div>
