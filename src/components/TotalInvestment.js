@@ -12,9 +12,9 @@ export default function TotalInvestment({ totalInvestment }) {
           <path d="M2.30575 46.536L1 48.1246V66H87.1798V1L85.874 9.18474C84.5683 17.3695 81.9567 33.7389 79.3452 35.9998C76.7337 38.2607 74.1222 26.4129 71.5107 27.247C68.8992 28.0811 66.2877 41.5971 63.6762 41.4614C61.0647 41.3258 58.4532 27.5386 55.8417 21.6806C53.2302 15.8226 50.6187 17.8938 48.0071 20.5648C45.3956 23.2357 42.7841 26.5064 40.1726 29.186C37.5611 31.8656 34.9496 33.9542 32.3381 40.719C29.7266 47.4837 27.1151 58.9246 24.5036 58.7126C21.8921 58.5006 19.2806 46.6356 16.669 41.3402C14.0575 36.0448 11.446 37.319 8.83452 39.5446C6.22302 41.7703 3.61151 44.9474 2.30575 46.536Z" fill="url(#paint0_linear_12_97)" fillOpacity="0.6" />
           <defs>
             <linearGradient id="paint0_linear_12_97" x1="44.0899" y1="3.19101" x2="44.0899" y2="55.4101" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#82F4FF" />
-              <stop offset="0.443865" stop-color="#ACF8FF" stopOpacity="0.665512" />
-              <stop offset="1" stop-color="white" stopOpacity="0" />
+              <stop stopColor="#82F4FF" />
+              <stop offset="0.443865" stopColor="#ACF8FF" stopOpacity="0.665512" />
+              <stop offset="1" stopColor="white" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>

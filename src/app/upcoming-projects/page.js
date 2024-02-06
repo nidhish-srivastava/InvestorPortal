@@ -8,7 +8,7 @@ import TotalInvestment from "@/components/TotalInvestment";
 import { sumHandler } from "@/utils";
 import { db } from "@/utils/firebase";
 import { useMyInvestmentHook } from "@/utils/hooks/useMyInvestmentHook";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Skeleton from 'react-loading-skeleton';
@@ -20,21 +20,23 @@ function UpcomingProjects() {
   const [upcomingProjects,setUpcomingProjects] = useState([])
   const [loading, setLoading] = useState(false);
   useEffect(()=>{
-    const fetchTrendingProjects = async()=>{
+    const fetchUpcomingProjects = async(excludeIds)=>{
       setLoading(true);
       try {
         const data = await getDocs(projectCollectionRef);
-        const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) 
-        const filter = result.sort((a,b)=>b.cost-a.cost)
-        setUpcomingProjects(filter)
+        const result = data.docs
+        .filter(doc => !excludeIds.includes(doc.id))
+        .map(doc => ({ ...doc.data(), id: doc.id }));
+        setUpcomingProjects(result)
         setLoading(false)
       } catch (error) {
         setLoading(false);
         console.error("Error fetching projects:", error);
       }
     }
-    fetchTrendingProjects()
-  },[])
+    const excludeIds = myInvestments.map(project => project.projectId);
+    fetchUpcomingProjects(excludeIds)
+  },[myInvestments])
   return (
     <>
     <HamburgerModal/>
