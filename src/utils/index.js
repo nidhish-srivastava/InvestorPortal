@@ -1,6 +1,6 @@
 export const sumHandler = (arr) =>{
     const sum = arr?.reduce((acc,curr)=>{
-       return acc + parseFloat(curr.investmentAmount)
+       return acc + parseFloat(curr.investmentAmount || curr.amountInvested)
       },0)
       return sum
 }

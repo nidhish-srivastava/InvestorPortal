@@ -63,10 +63,10 @@ function Page() {
         fetchDetails()
     }, [])
 
+
     let currentInvestors = obj?.investmentProgress?.length
     let maxInvestorsRequired = 5 - currentInvestors
     let investmentRaised = sumHandler(obj?.investmentProgress)
-  
     let investmentRequired = obj?.cost - investmentRaised
     let projectName = obj?.name
     let phoneNumber = obj?.phoneNumber
