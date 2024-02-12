@@ -7,6 +7,7 @@ import { addDoc, collection } from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import toast, {  Toaster,LoaderIcon } from "react-hot-toast"
+import { serverTimestamp } from "firebase/firestore"
 
 function Invest({ params }) {
   const adminCollectionRef = collection(db,"admin")
@@ -32,7 +33,7 @@ function Invest({ params }) {
     setLoading(true)
     const docId = investorDetails.docId
     try {
-      const sendReqToAdmin = await addDoc(adminCollectionRef,{...investorDetails,investmentAmount,projectId,docId,approved:false})
+      const sendReqToAdmin = await addDoc(adminCollectionRef,{...investorDetails,investmentAmount,projectId,docId,approved:false,timestamp : serverTimestamp()})
       if(sendReqToAdmin.id.length>1){
           router.push("invest/investmentInterest-success")
         } 

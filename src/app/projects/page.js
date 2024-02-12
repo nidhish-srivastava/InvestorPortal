@@ -47,6 +47,7 @@ function Home() {
   }, []);
   return (
     <>
+      <HamburgerModal/>
       <Header />
       <h2 className="heading-style-1">
         All Projects

@@ -2,7 +2,7 @@
 import Button from "@/components/Button"
 import BackNavHeader from "@/components/Navbar/BackNavHeader"
 import { db } from "@/utils/firebase"
-import { addDoc, collection } from "firebase/firestore"
+import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import toast, { Toaster } from "react-hot-toast"
 
@@ -24,7 +24,7 @@ function Suggestion() {
 
   const submitSuggestion = async() =>{
     try {
-      await addDoc(suggestionCollectionRef,{investorEmail,investorName,suggestion})
+      await addDoc(suggestionCollectionRef,{investorEmail,investorName,suggestion,timestamp:serverTimestamp()})
       toast.success("Suggestion sent successfully")
       setSuggestion("")
     } catch (error) {
