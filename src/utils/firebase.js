@@ -4,13 +4,13 @@ import {getAuth} from "firebase/auth"
 import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APPID,
-  measurementId: process.env.MEASUREMENT_ID
+  apiKey: "AIzaSyAwvFhm9Mk4iAmAaQYkduljqVnGp-d2evc",
+  authDomain: "investorpanel-2fb0d.firebaseapp.com",
+  projectId: "investorpanel-2fb0d",
+  storageBucket: "investorpanel-2fb0d.appspot.com",
+  messagingSenderId: 719953933024,
+  appId: "1:719953933024:web:4c903302f108a332fbd685",
+  measurementId: "G-B69D9JZJNN"
 }
 
 const app = initializeApp(firebaseConfig);
